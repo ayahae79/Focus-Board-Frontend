@@ -61,7 +61,7 @@ return (
         <label className="newcourse-label">Lecture Date:</label>
         <input
           type="date" // Changed input type to date for lecture date
-          value={lectureDate} // Changed to use lectureDate state
+          value={lecturedate} // Changed to use lectureDate state
           onChange={(event) => setLectureDate(event.target.value)} // Updated onChange
           className="newcourse-input"
           required // Added required attribute

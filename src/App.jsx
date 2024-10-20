@@ -59,7 +59,7 @@ const App = () => {
               path="/courses/:id"
               element={<CourseDetails user={user.data} />}
             />
-            <Route path="courses/createcourse" element={<CreateCourseForm />} />
+            <Route path="courses/createcourse" element={<CreateCourseForm/>} />
           </Routes>
         </main>
         <div className="footer">LearnTech University &copy;2024</div>
