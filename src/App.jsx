@@ -1,24 +1,24 @@
-import './App.css'
-import { useState, useEffect } from 'react'
-import { Routes, Route } from 'react-router-dom'
-import RegisterPage from './pages/RegisterPage'
-import LoginPage from './pages/LoginPage'
-import TaskList from './pages/TaskList'
-import TaskDetail from './pages/TaskDetail'
-import NewTask from './components/NewTask'
-import Nav from './components/Nav'
+import "./App.css"
+import { useState, useEffect } from "react"
+import { Routes, Route } from "react-router-dom"
+import RegisterPage from "./pages/RegisterPage"
+import LoginPage from "./pages/LoginPage"
+import TaskList from "./pages/TaskList"
+import TaskDetail from "./pages/TaskDetail"
+import NewTask from "./components/NewTask"
+import Nav from "./components/Nav"
 import CourseDetails from "./pages/courseDetails"
 import CourseCard from "./components/courseCard"
 import CreateCourseForm from "./components/Newcourse"
 import CourseList from "./pages/courseList"
-import { CheckSession } from './services/api' // Adjusted to match the correct path
+import { CheckSession } from "./services/api" // Adjusted to match the correct path
 
 const App = () => {
   const [user, setUser] = useState({ data: null, role: null })
 
   const handleLogOut = () => {
     setUser({ data: null, role: null })
-    localStorage.removeItem('token') // Clear token on logout
+    localStorage.removeItem("token") // Clear token on logout
   }
 
   useEffect(() => {
@@ -29,7 +29,7 @@ const App = () => {
           setUser({ data: userData, role: userData.role })
         }
       } catch (error) {
-        console.error('Error fetching user session:', error)
+        console.error("Error fetching user session:", error)
         setUser({ data: null, role: null }) // Optional: reset user on error
       }
     }

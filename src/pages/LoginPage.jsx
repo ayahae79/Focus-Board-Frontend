@@ -2,7 +2,6 @@ import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { SignInUser } from "../services/Auth"
 
-
 const LoginPage = ({ setUser }) => {
   let navigate = useNavigate()
   let initialState = { email: "", password: "" }
