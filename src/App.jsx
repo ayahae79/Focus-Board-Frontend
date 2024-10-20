@@ -11,6 +11,8 @@ import CourseDetails from './pages/courseDetails'
 import CourseCard from './components/courseCard'
 import CreateCourseForm from './components/Newcourse'
 import CourseList from './pages/courseList'
+import StudentProfile from './components/StudentProfile'
+import ProfileDisplay from './pages/ProfileDisplay'
 import { CheckSession } from './services/api'
 
 const App = () => {
@@ -62,6 +64,8 @@ const App = () => {
               element={<CourseDetails user={user.data} />}
             />
             <Route path="courses/createcourse" element={<CreateCourseForm />} />
+            <Route path="user/profile" element={<StudentProfile />} />
+            <Route path="/profile/data" element={<ProfileDisplay/>} />
           </Routes>
         </main>
         <footer className="footer">
