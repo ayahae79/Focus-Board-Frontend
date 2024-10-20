@@ -1,17 +1,16 @@
-import React from "react"
-import { useState } from "react"
-import { useNavigate } from "react-router-dom"
-import { RegisterUser } from "../services/Auth"
+import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { RegisterUser } from '../services/Auth'
 
 const RegisterPage = () => {
   let navigate = useNavigate()
   const initialState = {
-    username: "",
-    email: "",
-    password: "",
+    username: '',
+    email: '',
+    password: ''
   }
   const [formValues, setFormValues] = useState(initialState)
-  const [error, setError] = useState("")
+  const [error, setError] = useState('')
 
   const handleChange = (e) => {
     setFormValues({ ...formValues, [e.target.name]: e.target.value })
@@ -22,22 +21,18 @@ const RegisterPage = () => {
     try {
       await RegisterUser(formValues)
       setFormValues(initialState)
-      navigate("/")
+      navigate('/login')
     } catch (error) {
-      setError("Registration failed! Please try again.")
+      setError('Registration failed! Please try again.')
     }
   }
 
   return (
     <div className="form-container">
-      {/* <div className="left-side">
-        <img src={background} alt="Background" className="background-image" />
-      </div> */}
       <div className="right-side">
         <form onSubmit={handleSubmit} className="register-form">
-          <h1 className="register-title">Join the Wonka Adventure!</h1>
+          <h1 className="register-title">Join LearnTech University!</h1>
           <div className="input-wrapper">
-            <span className="material-icons input-icon">person</span>
             <label htmlFor="username">Username</label>
             <input
               type="text"
@@ -50,7 +45,6 @@ const RegisterPage = () => {
             />
           </div>
           <div className="input-wrapper">
-            <span className="material-icons input-icon">email</span>
             <label htmlFor="email">Email</label>
             <input
               onChange={handleChange}
@@ -62,7 +56,6 @@ const RegisterPage = () => {
             />
           </div>
           <div className="input-wrapper">
-            <span className="material-icons input-icon">lock</span>
             <label htmlFor="password">Password</label>
             <input
               onChange={handleChange}
@@ -73,7 +66,7 @@ const RegisterPage = () => {
               required
             />
           </div>
-          <button type="submit">Login</button>
+          <button type="submit">Register</button>
         </form>
       </div>
     </div>

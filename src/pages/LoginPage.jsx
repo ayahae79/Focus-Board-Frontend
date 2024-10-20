@@ -1,12 +1,12 @@
-import { useState } from "react"
-import { useNavigate } from "react-router-dom"
-import { SignInUser } from "../services/Auth"
+import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { SignInUser } from '../services/Auth'
 
 const LoginPage = ({ setUser }) => {
   let navigate = useNavigate()
-  let initialState = { email: "", password: "" }
+  let initialState = { email: '', password: '' }
   const [formValues, setFormValues] = useState(initialState)
-  const [errorMessage, setErrorMessage] = useState("")
+  const [errorMessage, setErrorMessage] = useState('')
 
   const handleChange = (e) => {
     setFormValues({ ...formValues, [e.target.name]: e.target.value })
@@ -18,24 +18,21 @@ const LoginPage = ({ setUser }) => {
       const payload = await SignInUser(formValues)
       setFormValues(initialState)
       setUser(payload)
-      navigate("/")
+      localStorage.setItem('user', JSON.stringify(payload)) // Save user to localStorage
+      navigate('/')
     } catch (error) {
-      setErrorMessage("Invalid email or password. Please try again.")
+      setErrorMessage('Invalid email or password. Please try again.')
     }
   }
 
   return (
     <div className="form-container">
-      <div className="left-side">
-        <img src={background} alt="Background" className="background-image" />
-      </div>
       <div className="right-side">
         <form onSubmit={handleSubmit} className="register-form">
           <h1 className="register-title">
-            Welcome Back to the Wonka Adventure!
+            Welcome Back to LearnTech University!
           </h1>
           <div className="input-wrapper">
-            <span className="material-icons input-icon">email</span>
             <label htmlFor="email">Email</label>
             <input
               onChange={handleChange}
@@ -47,7 +44,6 @@ const LoginPage = ({ setUser }) => {
             />
           </div>
           <div className="input-wrapper">
-            <span className="material-icons input-icon">lock</span>
             <label htmlFor="password">Password</label>
             <input
               onChange={handleChange}
