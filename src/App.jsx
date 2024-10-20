@@ -18,21 +18,22 @@ const App = () => {
 
   const handleLogOut = () => {
     setUser({ data: null, role: null })
-    localStorage.removeItem("token") // Clear token on logout
+    localStorage.removeItem('token')
   }
 
-  useEffect(() => {
-    const fetchUserSession = async () => {
-      try {
-        const userData = await CheckSession()
-        if (userData) {
-          setUser({ data: userData, role: userData.role })
-        }
-      } catch (error) {
-        console.error("Error fetching user session:", error)
-        setUser({ data: null, role: null }) // Reset user on error
+  const fetchUserSession = async () => {
+    console.log('FETCHING USER SESSION!!!')
+    try {
+      const userData = await CheckSession()
+      if (userData) {
+        setUser({ data: userData, role: userData.role })
       }
+    } catch (error) {
+      console.error('Error fetching user session:', error)
+      setUser({ data: null, role: null })
     }
+  }
+  useEffect(() => {
     fetchUserSession()
   }, [])
 
@@ -44,7 +45,7 @@ const App = () => {
           <Routes>
             <Route path="/" element={<Navigate to="/login" />} />
             <Route path="/register" element={<RegisterPage />} />
-            <Route path="/login" element={<LoginPage setUser={setUser} />} />
+            <Route path="/login" element={<LoginPage setUser={setUser} fetchUserSession={fetchUserSession}/>} />
             <Route path="/tasks" element={<TaskList />} />
             <Route path="/tasks/new" element={<NewTask user={user.data} />} />
             <Route
