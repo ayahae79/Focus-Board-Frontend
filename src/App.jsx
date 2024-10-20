@@ -51,6 +51,12 @@ const App = () => {
               path="/tasks/:id"
               element={<TaskDetail user={user.data} />}
             />
+             <Route path="/courses" element={<CourseList user={user.data} />} />
+             <Route
+              path="/courses/:id"
+              element={<CourseDetails user={user.data} />}
+            />
+            <Route path="courses/createcourse" element={<CreateCourseForm/>} />
           </Routes>
         </main>
         <div className="footer">LearnTech University &copy;2024</div>
