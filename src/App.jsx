@@ -7,6 +7,10 @@ import TaskList from './pages/TaskList'
 import TaskDetail from './pages/TaskDetail'
 import NewTask from './components/NewTask'
 import Nav from './components/Nav'
+import CourseDetails from "./pages/courseDetails"
+import CourseCard from "./components/courseCard"
+import CreateCourseForm from "./components/Newcourse"
+import CourseList from "./pages/courseList"
 import { CheckSession } from './services/api' // Adjusted to match the correct path
 
 const App = () => {
