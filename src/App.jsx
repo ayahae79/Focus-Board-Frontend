@@ -18,7 +18,7 @@ const App = () => {
 
   const handleLogOut = () => {
     setUser({ data: null, role: null })
-    localStorage.removeItem('token') // Clear token on logout
+    localStorage.removeItem("token") // Clear token on logout
   }
 
   useEffect(() => {
@@ -29,7 +29,7 @@ const App = () => {
           setUser({ data: userData, role: userData.role })
         }
       } catch (error) {
-        console.error('Error fetching user session:', error)
+        console.error("Error fetching user session:", error)
         setUser({ data: null, role: null }) // Reset user on error
       }
     }
