@@ -30,9 +30,9 @@ const RegisterPage = () => {
 
   return (
     <div className="form-container">
-      <div className="left-side">
+      {/* <div className="left-side">
         <img src={background} alt="Background" className="background-image" />
-      </div>
+      </div> */}
       <div className="right-side">
         <form onSubmit={handleSubmit} className="register-form">
           <h1 className="register-title">Join the Wonka Adventure!</h1>
