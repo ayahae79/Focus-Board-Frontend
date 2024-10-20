@@ -37,8 +37,8 @@ const App = () => {
   }, [])
 
   return (
-    <div className="app-container">
-      <div className="main-content">
+    <div className="App">
+      <div className="container">
         <Nav user={user.data} handleLogOut={handleLogOut} />
         <main>
           <Routes>
@@ -63,7 +63,14 @@ const App = () => {
             <Route path="courses/createcourse" element={<CreateCourseForm />} />
           </Routes>
         </main>
-        <div className="footer">LearnTech University &copy;2024</div>
+        <footer className="footer">
+          <div className="footer-content">
+            <p>
+              &copy; {new Date().getFullYear()} Your Company Name. All Rights
+              Reserved. Terms of Service | Privacy Policy
+            </p>
+          </div>
+        </footer>
       </div>
     </div>
   )
