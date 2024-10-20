@@ -5,7 +5,7 @@ import axios from "axios";
 const BASE_URL = "http://localhost:3000";
 
 const TaskDetail = ({ user }) => {
-  const { id } = useParams(); // Get task ID from URL params
+  const { id } = useParams(); 
   const navigate = useNavigate();
   const [task, setTask] = useState(null);
 
@@ -23,7 +23,7 @@ const TaskDetail = ({ user }) => {
   }, [id]);
 
   const handleEdit = () => {
-    navigate(`/tasks/edit/${id}`); // Navigate to edit page
+    navigate(`/tasks/edit/${id}`); 
   };
 
   const handleDelete = async () => {
@@ -33,7 +33,7 @@ const TaskDetail = ({ user }) => {
     try {
       await axios.delete(`${BASE_URL}/tasks/${id}`);
       alert("Task deleted successfully!");
-      navigate("/tasks"); // Redirect to tasks list after deletion
+      navigate("/tasks"); 
     } catch (error) {
       console.error("Error deleting task:", error);
     }

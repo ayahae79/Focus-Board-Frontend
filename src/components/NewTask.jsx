@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import { useNavigate, useParams } from 'react-router-dom'
-import '../css/NewTask.css' // Add your CSS file for styles
+
 
 const BASE_URL = 'http://localhost:3000'
 
 const NewTask = ({ user }) => {
   const navigate = useNavigate()
-  const { id } = useParams() // Get task ID from URL if updating
+  const { id } = useParams() 
   const [task, setTask] = useState({
     name: '',
     description: '',
@@ -19,7 +19,6 @@ const NewTask = ({ user }) => {
   })
 
   useEffect(() => {
-    // If ID is present, fetch the task details for updating
     if (id) {
       const fetchTask = async () => {
         try {

@@ -2,8 +2,6 @@ import React from "react"
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { RegisterUser } from "../services/Auth"
-import background from "../assets/Background2.jpg"
-// import "../css/RegisterPage.css"
 
 const RegisterPage = () => {
   let navigate = useNavigate()

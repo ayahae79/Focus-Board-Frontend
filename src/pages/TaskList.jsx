@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import TaskCard from "../components/TaskCard"; // Assuming you have a TaskCard component for individual tasks
+import TaskCard from "../components/TaskCard"; 
 import axios from "axios";
 import { Link } from "react-router-dom";
-import "../css/TaskList.css"; // Import the CSS file for styles
+
 
 const BASE_URL = "http://localhost:3000";
 
