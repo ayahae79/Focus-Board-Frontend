@@ -4,7 +4,7 @@ import CourseCard from '../components/courseCard'
 const BASE_URL = 'http://localhost:3000'
 import { Link } from "react-router-dom"
 const CourseList = ({ user }) => {
-  const [courses, setCourses] = useState([])
+  const [courses, setcourses] = useState([])
 
   useEffect(() => {
     getCourses()
@@ -26,7 +26,7 @@ const CourseList = ({ user }) => {
       <div className="courses">
         {courses.map((course) => (
           <div key={course._id}>
-            <CourseCard course={course} user={user} setCourses={setCourses} />
+            <CourseCard course={course} user={user} setcourses={setcourses} />
           </div>
         ))}
       </div>
