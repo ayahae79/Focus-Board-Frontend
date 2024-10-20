@@ -1,6 +1,6 @@
 import React from 'react';
 
-const CourseCard = ({ course }) => {
+const CourseCard = ({ course, onEdit, onDelete }) => {
   // Check if lectureSchedule exists and has at least one item
   const hasLectureSchedule = course.lectureSchedule && course.lectureSchedule.length > 0;
 
@@ -23,7 +23,10 @@ const CourseCard = ({ course }) => {
       ) : (
         <p className="no-lecture-info">No lecture information available.</p>
       )}
-      {/* You can add more details as needed */}
+      <div className="course-actions">
+        <button onClick={() => onEdit(course)}>Edit</button>
+        <button onClick={() => onDelete(course._id)}>Delete</button>
+      </div>
     </div>
   );
 };
