@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { SignInUser } from '../services/Auth'
 
-const LoginPage = ({ setUser }) => {
+const LoginPage = ({ setUser, fetchUserSession }) => {
   let navigate = useNavigate()
   let initialState = { email: '', password: '' }
   const [formValues, setFormValues] = useState(initialState)
@@ -18,7 +18,8 @@ const LoginPage = ({ setUser }) => {
       const payload = await SignInUser(formValues)
       setFormValues(initialState)
       setUser(payload)
-      localStorage.setItem('user', JSON.stringify(payload)) // Save user to localStorage
+      localStorage.setItem('user', JSON.stringify(payload))
+      fetchUserSession()
       navigate('/')
     } catch (error) {
       setErrorMessage('Invalid email or password. Please try again.')
