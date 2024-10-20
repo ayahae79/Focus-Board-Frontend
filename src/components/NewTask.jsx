@@ -2,20 +2,17 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import { useNavigate, useParams } from 'react-router-dom'
 
-
 const BASE_URL = 'http://localhost:3000'
 
 const NewTask = ({ user }) => {
   const navigate = useNavigate()
-  const { id } = useParams() 
+  const { id } = useParams()
   const [task, setTask] = useState({
     name: '',
     description: '',
     deadline: '',
     status: 'Pending',
-    course: '',
-    user: user ? user._id : '',
-    event: ''
+    user: user ? user._id : '' // Assume task is linked to user
   })
 
   useEffect(() => {

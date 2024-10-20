@@ -26,7 +26,7 @@ const App = () => {
         }
       } catch (error) {
         console.error('Error fetching user session:', error)
-        // Optionally, you could set user to null here if the session check fails
+        setUser({ data: null, role: null }) // Optional: reset user on error
       }
     }
     fetchUserSession()
@@ -40,7 +40,7 @@ const App = () => {
           <Routes>
             <Route path="/register" element={<RegisterPage />} />
             <Route path="/login" element={<LoginPage setUser={setUser} />} />
-            <Route path="/tasks" element={<TaskList user={user.data} />} />
+            <Route path="/tasks" element={<TaskList />} />
             <Route path="/tasks/new" element={<NewTask user={user.data} />} />
             <Route
               path="/tasks/edit/:id"
