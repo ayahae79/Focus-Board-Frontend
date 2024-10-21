@@ -63,7 +63,7 @@ const App = () => {
                 />
               }
             />
-            <Route path="/tasks" element={<TaskList />} />
+            <Route path="/tasks" element={<TaskList user={user.data} />} />
             <Route path="/tasks/new" element={<NewTask user={user.data} />} />
             <Route path="/tasks/:id" element={<TaskDetail />} />
             <Route
@@ -90,7 +90,7 @@ const App = () => {
               path="/roadmap/new"
               element={<CreateRoadmapForm user={user.data} />}
             />
-            <Route path="/events" element={<EventList />} />
+            <Route path="/events" element={<EventList user={user.data} />} />
             <Route path="/events/add" element={<NewEvent user={user.data} />} />
             <Route path="/events/:id" element={<EventDetails />} />
             <Route
