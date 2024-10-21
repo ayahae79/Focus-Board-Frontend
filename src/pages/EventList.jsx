@@ -5,7 +5,7 @@ import EventCard from "../components/EventCard"
 
 const BASE_URL = "http://localhost:3000"
 
-const EventList = () => {
+const EventList = ({ user }) => {
   const [events, setEvents] = useState([])
 
   useEffect(() => {
@@ -14,9 +14,9 @@ const EventList = () => {
 
   const getEvents = async () => {
     try {
-      const response = await axios.get(`${BASE_URL}/event/events`)
+      const response = await axios.get(`${BASE_URL}/user/myEvents/${user.id}`)
       console.log(response)
-      setEvents(response.data)
+      setEvents(response.data.event)
     } catch (error) {
       console.error("Failed to fetch events:", error.response || error.message)
     }

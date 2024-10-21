@@ -35,6 +35,16 @@ const Nav = ({ user, handleLogOut }) => {
             <FaPlus /> Add Task{" "}
           </Link>
         </li>
+        <li>
+          <Link to="/courses" className="nav-link">
+            <FaBook /> Courses List
+          </Link>
+        </li>
+        <li>
+          <Link to="/courses/createcourse" className="nav-link">
+            <FaPlus /> Add Course
+          </Link>
+        </li>
       </ul>
     </nav>
   )
@@ -87,13 +97,8 @@ const Nav = ({ user, handleLogOut }) => {
           </Link>
         </li>
         <li>
-          <Link to="/courses" className="nav-link">
-            <FaBook /> Courses List
-          </Link>
-        </li>
-        <li>
-          <Link to="/courses/createcourse" className="nav-link">
-            <FaPlus /> Add Course
+          <Link to="/mycourses" className="nav-link">
+            <FaBook /> My Courses
           </Link>
         </li>
       </ul>

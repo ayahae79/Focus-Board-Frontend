@@ -20,6 +20,7 @@ import { CheckSession } from "./services/api"
 import CreateRoadmapForm from "./components/newRoadmap"
 import RoadmapList from "./pages/roadmapList"
 import EditCourseForm from "./components/EditCourseForm"
+import UserCourse from "./pages/UserCourse"
 
 const App = () => {
   const [user, setUser] = useState({ data: null, role: null })
@@ -62,7 +63,7 @@ const App = () => {
                 />
               }
             />
-            <Route path="/tasks" element={<TaskList />} />
+            <Route path="/tasks" element={<TaskList user={user.data} />} />
             <Route path="/tasks/new" element={<NewTask user={user.data} />} />
             <Route path="/tasks/:id" element={<TaskDetail />} />
             <Route
@@ -70,6 +71,10 @@ const App = () => {
               element={<UpdateTask user={user.data} />}
             />
             <Route path="/courses" element={<CourseList user={user.data} />} />
+            <Route
+              path="/mycourses"
+              element={<UserCourse user={user.data} />}
+            />
             <Route
               path="/courses/:id"
               element={<CourseDetails user={user.data} />}
@@ -85,7 +90,7 @@ const App = () => {
               path="/roadmap/new"
               element={<CreateRoadmapForm user={user.data} />}
             />
-            <Route path="/events" element={<EventList />} />
+            <Route path="/events" element={<EventList user={user.data} />} />
             <Route path="/events/add" element={<NewEvent user={user.data} />} />
             <Route path="/events/:id" element={<EventDetails />} />
             <Route
