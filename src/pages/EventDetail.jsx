@@ -29,7 +29,7 @@ const EventDetails = () => {
     if (!confirmDelete) return
 
     try {
-      await axios.delete(`${BASE_URL}/event/${id}`)
+      await axios.delete(`${BASE_URL}/event/event/${id}`)
       alert("Event deleted successfully!")
       navigate("/events")
     } catch (error) {
@@ -52,12 +52,6 @@ const EventDetails = () => {
       <p>
         <strong>Task ID:</strong> {event.task}
       </p>
-      <button
-        onClick={() => navigate(`/events/edit/${event._id}`)}
-        className="edit-button"
-      >
-        Edit Event
-      </button>
       <button onClick={handleDelete} className="delete-button">
         Delete Event
       </button>
