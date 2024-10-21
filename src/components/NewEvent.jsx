@@ -1,53 +1,75 @@
-import axios from 'axios'
-import React, { useState, useEffect } from 'react'
-import { useNavigate, useParams } from 'react-router-dom'
+import axios from 'axios';
+import React, { useState, useEffect } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 
-const BASE_URL = 'http://localhost:3000'
+const BASE_URL = 'http://localhost:3000';
 
 const NewEvent = () => {
-  const navigate = useNavigate()
-  const { id } = useParams() // Get the event ID if available
+  const navigate = useNavigate();
+  const { id } = useParams();
+
   const [event, setEvent] = useState({
     name: '',
     start: '',
     end: '',
     task: ''
-  })
+  });
+
+  const [tasks, setTasks] = useState([]);
 
   useEffect(() => {
-    if (id) {
-      const fetchEventDetails = async () => {
+    const fetchTasks = async () => {
+      try {
+        const response = await axios.get(`${BASE_URL}/tasks/tasks`);
+        setTasks(response.data);
+      } catch (error) {
+        console.error('Error fetching tasks:', error);
+      }
+    };
+
+    const fetchEventDetails = async () => {
+      if (id) {
         try {
-          const response = await axios.get(`${BASE_URL}/event/${id}`)
-          setEvent(response.data)
+          const response = await axios.get(`${BASE_URL}/events/event/${id}`);
+          setEvent(response.data);
         } catch (error) {
-          console.error('Error fetching event details:', error)
+          console.error('Error fetching event details:', error);
         }
       }
-      fetchEventDetails()
-    }
-  }, [id])
+    };
+
+    fetchTasks();
+    fetchEventDetails();
+  }, [id]);
 
   const handleChange = (e) => {
-    const { name, value } = e.target
-    setEvent((prevEvent) => ({ ...prevEvent, [name]: value }))
-  }
+    const { name, value } = e.target;
+    setEvent((prevEvent) => ({ ...prevEvent, [name]: value }));
+  };
 
   const handleSubmit = async (e) => {
-    e.preventDefault()
+    e.preventDefault();
     try {
+      const token = localStorage.getItem('token'); // Get the token from localStorage
+      const config = {
+        headers: {
+          Authorization: `Bearer ${token}` // Include the token in the header
+        }
+      };
+
       if (id) {
-        // Update existing event
-        await axios.put(`${BASE_URL}/event/${id}`, event)
+        await axios.put(`${BASE_URL}/event/${id}`, event, config);
       } else {
-        // Create new event
-        await axios.post(`${BASE_URL}/events/add`, event)
+        await axios.post(`${BASE_URL}/event/add`, event, config);
       }
-      navigate('/events') // Redirect after saving
+      navigate('/events'); // Navigate back to the event list
     } catch (error) {
-      console.error('Failed to save the event:', error)
+      console.error(
+        'Failed to save the event:',
+        error.response ? error.response.data : error.message
+      );
     }
-  }
+  };
 
   return (
     <div>
@@ -86,20 +108,30 @@ const NewEvent = () => {
           />
         </div>
         <div>
-          <label htmlFor="task">Task ID:</label>
-          <input
-            type="text"
+          <label htmlFor="task">Select Task:</label>
+          <select
             id="task"
             name="task"
             value={event.task}
             onChange={handleChange}
             required
-          />
+          >
+            <option value="">-- Select a Task --</option>
+            {tasks.length > 0 ? (
+              tasks.map((task) => (
+                <option key={task._id} value={task._id}>
+                  {task.name}
+                </option>
+              ))
+            ) : (
+              <option disabled>No tasks available</option>
+            )}
+          </select>
         </div>
         <button type="submit">{id ? 'Update Event' : 'Create Event'}</button>
       </form>
     </div>
-  )
-}
+  );
+};
 
-export default NewEvent
+export default NewEvent;
