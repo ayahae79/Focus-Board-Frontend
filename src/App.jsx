@@ -1,20 +1,20 @@
-import './App.css'
-import { useState, useEffect } from 'react'
-import { Routes, Route, Navigate } from 'react-router-dom'
-import RegisterPage from './pages/RegisterPage'
-import LoginPage from './pages/LoginPage'
-import TaskList from './pages/TaskList'
-import TaskDetail from './pages/TaskDetail'
-import NewTask from './components/NewTask'
-import Nav from './components/Nav'
-import CourseDetails from './pages/courseDetails'
-import CourseCard from './components/courseCard'
-import CreateCourseForm from './components/Newcourse'
-import CourseList from './pages/courseList'
-import StudentProfile from './components/StudentProfile'
-import ProfileDisplay from './pages/ProfileDisplay'
-import { CheckSession } from './services/api'
-
+import "./App.css"
+import { useState, useEffect } from "react"
+import { Routes, Route, Navigate } from "react-router-dom"
+import RegisterPage from "./pages/RegisterPage"
+import LoginPage from "./pages/LoginPage"
+import TaskList from "./pages/TaskList"
+import TaskDetail from "./pages/TaskDetail"
+import NewTask from "./components/NewTask"
+import Nav from "./components/Nav"
+import CourseDetails from "./pages/courseDetails"
+import CourseCard from "./components/courseCard"
+import CreateCourseForm from "./components/Newcourse"
+import CourseList from "./pages/courseList"
+import StudentProfile from "./components/StudentProfile"
+import ProfileDisplay from "./pages/ProfileDisplay"
+import UpdateTask from "./components/UpdateTask"
+import { CheckSession } from "./services/api"
 
 const App = () => {
   const [user, setUser] = useState({ data: null, role: null })
@@ -75,7 +75,7 @@ const App = () => {
             />
             <Route path="courses/createcourse" element={<CreateCourseForm />} />
             <Route path="user/profile" element={<StudentProfile />} />
-            <Route path="/profile/data" element={<ProfileDisplay/>} />
+            <Route path="/profile/data" element={<ProfileDisplay />} />
           </Routes>
         </main>
         <footer className="footer">
