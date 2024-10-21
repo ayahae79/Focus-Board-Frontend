@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react'
-import { useParams, useNavigate } from 'react-router-dom'
-import axios from 'axios'
+import React, { useState, useEffect } from "react"
+import { useParams, useNavigate } from "react-router-dom"
+import axios from "axios"
 
-const BASE_URL = 'http://localhost:3000'
+const BASE_URL = "http://localhost:3000"
 
 const TaskDetail = ({ user }) => {
   const { id } = useParams()
@@ -12,11 +12,11 @@ const TaskDetail = ({ user }) => {
   useEffect(() => {
     const fetchTaskDetails = async () => {
       try {
-        const response = await axios.get(`${BASE_URL}/tasks/${id}`)
+        const response = await axios.get(`${BASE_URL}/tasks/tasks/${id}`)
         setTask(response.data)
       } catch (error) {
-        console.error('Error fetching task details:', error)
-        alert('Could not fetch task details. Please try again later.')
+        console.error("Error fetching task details:", error)
+        alert("Could not fetch task details. Please try again later.")
       }
     }
 
@@ -29,17 +29,16 @@ const TaskDetail = ({ user }) => {
 
   const handleDelete = async () => {
     const confirmDelete = window.confirm(
-      'Are you sure you want to delete this task?'
+      "Are you sure you want to delete this task?"
     )
     if (!confirmDelete) return
-
     try {
-      await axios.delete(`${BASE_URL}/tasks/${id}`)
-      alert('Task deleted successfully!')
-      navigate('/tasks')
+      await axios.delete(`${BASE_URL}/tasks/tasks/${id}`)
+      alert("Task deleted successfully!")
+      navigate("/tasks")
     } catch (error) {
-      console.error('Error deleting task:', error)
-      alert('Could not delete the task. Please try again later.')
+      console.error("Error deleting task:", error)
+      alert("Could not delete the task. Please try again later.")
     }
   }
 
@@ -52,7 +51,7 @@ const TaskDetail = ({ user }) => {
         <strong>Description:</strong> {task.description}
       </p>
       <p>
-        <strong>Deadline:</strong>{' '}
+        <strong>Deadline:</strong>{" "}
         {new Date(task.deadline).toLocaleDateString()}
       </p>
       <p>
