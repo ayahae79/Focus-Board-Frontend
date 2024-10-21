@@ -32,6 +32,7 @@ const Nav = ({ user, handleLogOut }) => {
             <FaPlus /> Add Task{" "}
           </Link>
         </li>
+        
       </ul>
     </nav>
   )

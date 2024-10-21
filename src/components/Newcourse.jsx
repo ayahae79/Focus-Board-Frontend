@@ -22,7 +22,7 @@ const CreateCourseForm = () => {
         startTime,
         endTime,
       };
-      await axios.post(`${BASE_URL}/course/courses`, formData);
+      await axios.post(`${BASE_URL}/Course/courses`, formData);
       console.log("saved");
       
       // Reset the state using the setter functions
