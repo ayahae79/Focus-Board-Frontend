@@ -26,17 +26,17 @@ const App = () => {
 
   const fetchUserSession = async () => {
     console.log("FETCHING USER SESSION!!!")
-    console.log(user)
     try {
       const userData = await CheckSession()
+      console.log("User Data:", userData) // Log the user data here
       if (userData) {
         setUser({ data: userData, role: userData.role })
       }
     } catch (error) {
       console.error("Error fetching user session:", error)
-      setUser({ data: null, role: null })
     }
   }
+
   useEffect(() => {
     fetchUserSession()
   }, [])
@@ -74,8 +74,14 @@ const App = () => {
               element={<CourseDetails user={user.data} />}
             />
             <Route path="courses/createcourse" element={<CreateCourseForm />} />
-            <Route path="user/profile" element={<StudentProfile />} />
-            <Route path="/profile/data" element={<ProfileDisplay />} />
+            <Route
+              path="/profile"
+              element={<StudentProfile user={user.data} />}
+            />
+            <Route
+              path="/profile/data"
+              element={<ProfileDisplay user={user.data} />}
+            />
           </Routes>
         </main>
         <footer className="footer">
