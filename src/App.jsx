@@ -8,14 +8,14 @@ import TaskDetail from './pages/TaskDetail'
 import NewTask from './components/NewTask'
 import Nav from './components/Nav'
 import CourseDetails from './pages/courseDetails'
-import CourseCard from './components/courseCard'
-import CreateCourseForm from './components/Newcourse'
+import CreateCourseForm from './components/Newcourse' // This is for adding a new course
+import EditCourseForm from './components/EditCourseForm' // This is for editing a course
 import CourseList from './pages/courseList'
 import StudentProfile from './components/StudentProfile'
 import ProfileDisplay from './pages/ProfileDisplay'
 import UpdateTask from './components/UpdateTask'
-import EventList from './pages/EventList' // Add EventList
-import NewEvent from './components/NewEvent' // Add NewEvent
+import EventList from './pages/EventList'
+import NewEvent from './components/NewEvent'
 import { CheckSession } from './services/api'
 
 const App = () => {
@@ -27,16 +27,13 @@ const App = () => {
   }
 
   const fetchUserSession = async () => {
-
-    console.log("FETCHING USER SESSION!!!")
     try {
       const userData = await CheckSession()
-      console.log("User Data:", userData) // Log the user data here
       if (userData) {
         setUser({ data: userData, role: userData.role })
       }
     } catch (error) {
-      console.error("Error fetching user session:", error)
+      console.error('Error fetching user session:', error)
     }
   }
 
@@ -76,24 +73,19 @@ const App = () => {
               path="/courses/:id"
               element={<CourseDetails user={user.data} />}
             />
-            <Route path="/events" element={<EventList />} />{' '}
-            {/* Add EventList route */}
             <Route
-              path="/events/add"
-              element={<NewEvent user={user.data} />}
+              path="/courses/edit"
+              element={<EditCourseForm user={user.data} />}
             />{' '}
-            {/* Add NewEvent route */}
-            <Route path="/events/edit/:id" element={<NewEvent />} />{' '}
-            <Route path="courses/createcourse" element={<CreateCourseForm />} />
-            <Route
-              path="/profile"
-              element={<StudentProfile user={user.data} />}
-            />
-            <Route
-              path="/profile/data"
-              element={<ProfileDisplay user={user.data} />}
-            />
+            {/* Edit course */}
+            <Route path="/courses/new" element={<CreateCourseForm />} />{' '}
+            {/* Add new course */}
+            <Route path="/events" element={<EventList />} />
+            <Route path="/events/add" element={<NewEvent user={user.data} />} />
+            <Route path="/user/profile" element={<StudentProfile />} />
+            <Route path="/profile/data" element={<ProfileDisplay />} />
           </Routes>
+          
         </main>
         <footer className="footer">
           <div className="footer-content">
