@@ -11,6 +11,8 @@ import CourseDetails from './pages/courseDetails'
 import CourseCard from './components/courseCard'
 import CreateCourseForm from './components/Newcourse'
 import CourseList from './pages/courseList'
+import EventList from './pages/EventList' // Add EventList
+import NewEvent from './components/NewEvent' // Add NewEvent
 import { CheckSession } from './services/api'
 
 const App = () => {
@@ -33,6 +35,7 @@ const App = () => {
       setUser({ data: null, role: null })
     }
   }
+
   useEffect(() => {
     fetchUserSession()
   }, [])
@@ -45,7 +48,15 @@ const App = () => {
           <Routes>
             <Route path="/" element={<Navigate to="/login" />} />
             <Route path="/register" element={<RegisterPage />} />
-            <Route path="/login" element={<LoginPage setUser={setUser} fetchUserSession={fetchUserSession}/>} />
+            <Route
+              path="/login"
+              element={
+                <LoginPage
+                  setUser={setUser}
+                  fetchUserSession={fetchUserSession}
+                />
+              }
+            />
             <Route path="/tasks" element={<TaskList />} />
             <Route path="/tasks/new" element={<NewTask user={user.data} />} />
             <Route
@@ -61,7 +72,16 @@ const App = () => {
               path="/courses/:id"
               element={<CourseDetails user={user.data} />}
             />
-            <Route path="courses/createcourse" element={<CreateCourseForm />} />
+            <Route
+              path="/courses/createcourse"
+              element={<CreateCourseForm />}
+            />
+            <Route path="/events" element={<EventList />} />{' '}
+            {/* Add EventList route */}
+            <Route path="/events/add" element={<NewEvent />} />{' '}
+            {/* Add NewEvent route */}
+            <Route path="/events/edit/:id" element={<NewEvent />} />{' '}
+            {/* Add edit route for events */}
           </Routes>
         </main>
         <footer className="footer">
