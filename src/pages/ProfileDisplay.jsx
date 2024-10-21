@@ -1,32 +1,87 @@
-// src/ProfileDisplay.js
-import React from 'react';
-import { useLocation } from 'react-router-dom';
+import React, { useState, useEffect } from "react"
+import axios from "axios"
+import { useNavigate } from "react-router-dom"
 
-const ProfileDisplay = () => {
-    const location = useLocation();
-    const { profileData } = location.state || {};
+const BASE_URL = "http://localhost:3000"
 
-    if (!profileData) {
-        return <div>No profile data available.</div>;
+const ProfileDisplay = ({ user }) => {
+  const [userData, setUserData] = useState(null)
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(null)
+  const navigate = useNavigate()
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        const response = await axios.get(`${BASE_URL}/user/user/${user.id}`)
+        console.log("Fetched user data:", response.data)
+        setUserData(response.data)
+      } catch (err) {
+        console.error(err)
+      } finally {
+        setLoading(false)
+      }
     }
 
-    return (
-        <div className="container">
-            <h1>Profile Details</h1>
-            <ul>
-                <li><strong>Full Name:</strong> {profileData.full_name}</li>
-                <li><strong>Profile Picture:</strong> {profileData.profile_picture}</li>
-                <li><strong>Date of Birth:</strong> {profileData.date_of_birth}</li>
-                <li><strong>Email:</strong> {profileData.email}</li>
-                <li><strong>Phone Number:</strong> {profileData.phone_number}</li>
-                <li><strong>Student ID:</strong> {profileData.student_id}</li>
-                <li><strong>Major:</strong> {profileData.major}</li>
-                <li><strong>Year of Study:</strong> {profileData.year_of_study}</li>
-                <li><strong>GPA:</strong> {profileData.gpa}</li>
-                <li><strong>Academic Advisor:</strong> {profileData.academic_advisor}</li>
-            </ul>
-        </div>
-    );
-};
+    fetchUserData()
+  }, [user])
 
-export default ProfileDisplay;
+  if (loading) {
+    return <div>Loading...</div>
+  }
+
+  if (error) {
+    return <div>{error}</div>
+  }
+
+  if (!userData) {
+    return <div>No user data available.</div>
+  }
+
+  return (
+    <div className="container">
+      <h1>Profile Details</h1>
+      <div className="profile-card">
+        <div className="profile-info">
+          <strong>Full Name:</strong> <span>{userData.full_name}</span>
+        </div>
+        <div className="profile-info">
+          <strong>Username:</strong> <span>{userData.username}</span>
+        </div>
+        <div className="profile-info">
+          <strong>Email:</strong> <span>{userData.email}</span>
+        </div>
+        <div className="profile-info">
+          <strong>Date of Birth:</strong>{" "}
+          <span>{new Date(userData.date_of_birth).toLocaleDateString()}</span>
+        </div>
+        <div className="profile-info">
+          <strong>Phone Number:</strong> <span>{userData.phone_number}</span>
+        </div>
+        <div className="profile-info">
+          <strong>Student ID:</strong> <span>{userData.student_id}</span>
+        </div>
+        <div className="profile-info">
+          <strong>Major:</strong> <span>{userData.major}</span>
+        </div>
+        <div className="profile-info">
+          <strong>Year of Study:</strong> <span>{userData.year_of_study}</span>
+        </div>
+        <div className="profile-info">
+          <strong>GPA:</strong> <span>{userData.gpa}</span>
+        </div>
+        <div className="profile-info">
+          <strong>Academic Advisor:</strong>{" "}
+          <span>{userData.academic_advisor}</span>
+        </div>
+        <button
+          onClick={() => navigate("/profile")}
+          className="update-profile-button"
+        >
+          Update Profile
+        </button>
+      </div>
+    </div>
+  )
+}
+
+export default ProfileDisplay

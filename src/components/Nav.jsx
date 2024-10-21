@@ -32,7 +32,6 @@ const Nav = ({ user, handleLogOut }) => {
             <FaPlus /> Add Task{" "}
           </Link>
         </li>
-        
       </ul>
     </nav>
   )
@@ -65,6 +64,7 @@ const Nav = ({ user, handleLogOut }) => {
           </Link>
         </li>
         <li>
+
           <Link to="/events/add" className="nav-link">
             {" "}
             <FaPlus /> Add Event{" "}
@@ -74,6 +74,10 @@ const Nav = ({ user, handleLogOut }) => {
           <Link to="/events" className="nav-link">
             {" "}
             <FaTasks /> Event List{" "}
+
+          <Link to="/profile/data" className="nav-link">
+            {" "}
+            <FaPlus /> profile{" "}
           </Link>
         </li>
       </ul>

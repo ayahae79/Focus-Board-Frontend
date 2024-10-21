@@ -1,72 +1,154 @@
-// src/StudentProfile.js
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from "react"
+import { useNavigate } from "react-router-dom"
+import axios from "axios"
 
-const StudentProfile = () => {
-    const [formData, setFormData] = useState({
-        full_name: '',
-        profile_picture: '',
-        date_of_birth: '',
-        email: '',
-        phone_number: '',
-        student_id: '',
-        major: '',
-        year_of_study: '',
-        gpa: '',
-        academic_advisor: ''
-    });
+const BASE_URL = "http://localhost:3000"
 
-    const navigate = useNavigate();
+const StudentProfile = ({ user }) => {
+  const [formData, setFormData] = useState({
+    full_name: "",
+    date_of_birth: "",
+    phone_number: "",
+    student_id: "",
+    major: "",
+    year_of_study: "",
+    gpa: "",
+    academic_advisor: "",
+  })
 
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormData({ ...formData, [name]: value });
-    };
+  const [error, setError] = useState(null)
+  const navigate = useNavigate()
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        // Navigate to the ProfileDisplay page with the form data
-        navigate('/profile/data', { state: { profileData: formData } });
-    };
+  // Fetch user data when the component mounts
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        const response = await axios.get(`${BASE_URL}/user/user/${user.id}`)
+        const userData = response.data
 
-    return (
-        <div className="container">
-            <h1>Student Profile</h1>
-            <form onSubmit={handleSubmit}>
-                <label>Full Name:</label>
-                <input type="text" name="full_name" value={formData.full_name} onChange={handleChange} required />
+        // Populate formData with the user's current information
+        setFormData({
+          full_name: userData.full_name || "",
+          date_of_birth: userData.date_of_birth
+            ? userData.date_of_birth.split("T")[0]
+            : "",
+          phone_number: userData.phone_number || "",
+          student_id: userData.student_id || "",
+          major: userData.major || "",
+          year_of_study: userData.year_of_study || "",
+          gpa: userData.gpa || "",
+          academic_advisor: userData.academic_advisor || "",
+        })
+      } catch (err) {
+        setError("Error fetching user data.")
+        console.error(err)
+      }
+    }
 
-                {/* <label>Profile Picture URL:</label>
-                <input type="text" name="profile_picture" value={formData.profile_picture} onChange={handleChange} /> */}
+    if (user && user.id) {
+      fetchUserData()
+    }
+  }, [user])
 
-                <label>Date of Birth:</label>
-                <input type="date" name="date_of_birth" value={formData.date_of_birth} onChange={handleChange} required />
+  const handleChange = (e) => {
+    const { name, value } = e.target
+    setFormData({ ...formData, [name]: value })
+  }
 
-                <label>Email:</label>
-                <input type="email" name="email" value={formData.email} onChange={handleChange} required />
+  const handleSubmit = async (e) => {
+    e.preventDefault()
 
-                <label>Phone Number:</label>
-                <input type="text" name="phone_number" value={formData.phone_number} onChange={handleChange} required />
+    try {
+      // Send the updated profile data to the backend
+      const response = await axios.put(`${BASE_URL}/user/profile`, {
+        ...formData,
+        userId: user.id, // Include the userId in the request
+      })
 
-                <label>Student ID:</label>
-                <input type="text" name="student_id" value={formData.student_id} onChange={handleChange} required />
+      if (response.status === 200) {
+        // If successful, navigate to the ProfileDisplay page
+        navigate("/")
+      }
+    } catch (err) {
+      setError(err.response?.data?.error || "Error updating profile")
+    }
+  }
 
-                <label>Major:</label>
-                <input type="text" name="major" value={formData.major} onChange={handleChange} required />
+  return (
+    <div className="container">
+      <h1>Update Profile</h1>
+      {error && <div className="error">{error}</div>}
+      <form onSubmit={handleSubmit}>
+        <label>Full Name:</label>
+        <input
+          type="text"
+          name="full_name"
+          value={formData.full_name}
+          onChange={handleChange}
+          required
+        />
 
-                <label>Year of Study:</label>
-                <input type="text" name="year_of_study" value={formData.year_of_study} onChange={handleChange} required />
+        <label>Date of Birth:</label>
+        <input
+          type="date"
+          name="date_of_birth"
+          value={formData.date_of_birth}
+          onChange={handleChange}
+        />
 
-                <label>GPA:</label>
-                <input type="number" step="0.01" name="gpa" value={formData.gpa} onChange={handleChange} required />
+        <label>Phone Number:</label>
+        <input
+          type="text"
+          name="phone_number"
+          value={formData.phone_number}
+          onChange={handleChange}
+        />
 
-                <label>Academic Advisor:</label>
-                <input type="text" name="academic_advisor" value={formData.academic_advisor} onChange={handleChange} required />
+        <label>Student ID:</label>
+        <input
+          type="text"
+          name="student_id"
+          value={formData.student_id}
+          onChange={handleChange}
+        />
 
-                <button type="submit">Save Profile</button>
-            </form>
-        </div>
-    );
-};
+        <label>Major:</label>
+        <input
+          type="text"
+          name="major"
+          value={formData.major}
+          onChange={handleChange}
+        />
 
-export default StudentProfile;
+        <label>Year of Study:</label>
+        <input
+          type="text"
+          name="year_of_study"
+          value={formData.year_of_study}
+          onChange={handleChange}
+        />
+
+        <label>GPA:</label>
+        <input
+          type="number"
+          step="0.1"
+          name="gpa"
+          value={formData.gpa}
+          onChange={handleChange}
+        />
+
+        <label>Academic Advisor:</label>
+        <input
+          type="text"
+          name="academic_advisor"
+          value={formData.academic_advisor}
+          onChange={handleChange}
+        />
+
+        <button type="submit">Update Profile</button>
+      </form>
+    </div>
+  )
+}
+
+export default StudentProfile
