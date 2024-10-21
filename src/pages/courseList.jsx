@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import CourseCard from '../components/CourseCard';
+// import CourseCard from '../components/CourseCard';
 import { useNavigate } from 'react-router-dom';
 
 const BASE_URL = 'http://localhost:3000';

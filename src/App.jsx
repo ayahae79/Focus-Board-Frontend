@@ -15,6 +15,9 @@ import StudentProfile from "./components/StudentProfile"
 import ProfileDisplay from "./pages/ProfileDisplay"
 import UpdateTask from "./components/UpdateTask"
 import { CheckSession } from "./services/api"
+import CreateRoadmapForm from "./components/newRoadmap"
+import RoadmapList from "./pages/roadmapList"
+import roadMapCard from "./components/roadMapCard"
 
 const App = () => {
   const [user, setUser] = useState({ data: null, role: null })
@@ -26,9 +29,9 @@ const App = () => {
 
   const fetchUserSession = async () => {
     console.log("FETCHING USER SESSION!!!")
-    console.log(user)
     try {
       const userData = await CheckSession()
+      console.log(userData)
       if (userData) {
         setUser({ data: userData, role: userData.role })
       }
@@ -75,6 +78,11 @@ const App = () => {
             />
             <Route path="courses/createcourse" element={<CreateCourseForm />} />
             <Route path="user/profile" element={<StudentProfile />} />
+            <Route path="/roadmap" element={<RoadmapList user={user.data} />} />
+            <Route
+              path="/roadmap/new"
+              element={<CreateRoadmapForm user={user.data} />}
+            />
             <Route path="/profile/data" element={<ProfileDisplay />} />
           </Routes>
         </main>

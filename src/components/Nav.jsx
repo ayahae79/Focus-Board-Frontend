@@ -32,7 +32,6 @@ const Nav = ({ user, handleLogOut }) => {
             <FaPlus /> Add Task{" "}
           </Link>
         </li>
-        
       </ul>
     </nav>
   )
@@ -62,6 +61,12 @@ const Nav = ({ user, handleLogOut }) => {
           <Link to="/tasks/new" className="nav-link">
             {" "}
             <FaPlus /> Add Task{" "}
+          </Link>
+        </li>
+        <li>
+          <Link to="/roadmap/new" className="nav-link">
+            {" "}
+            <FaPlus /> Add roadmap{" "}
           </Link>
         </li>
       </ul>
