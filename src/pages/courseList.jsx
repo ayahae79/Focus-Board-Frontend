@@ -1,9 +1,7 @@
-
 import React, { useState, useEffect } from "react"
 import axios from "axios"
 import CourseCard from "../components/courseCard"
 import { useNavigate } from "react-router-dom"
-
 const BASE_URL = "http://localhost:3000"
 
 const CourseList = ({ user }) => {
@@ -24,21 +22,22 @@ const CourseList = ({ user }) => {
   }
 
   const handleEdit = (course) => {
-    navigate("/courses/createcourse", { state: { course } })
+    navigate('/courses/edit', { state: { course } })
   }
 
   const handleDelete = async (courseId) => {
     const confirmDelete = window.confirm(
-      "Are you sure you want to delete this course?"
+      'Are you sure you want to delete this course?'
     )
     if (!confirmDelete) return
 
     try {
       await axios.delete(`${BASE_URL}/course/courses/${courseId}`)
       setCourses(courses.filter((course) => course._id !== courseId))
-      alert("Course deleted successfully!")
+      alert('Course deleted successfully!')
     } catch (error) {
-      console.error("Error deleting course:", error)
+      console.error('Error deleting course:', error)
+
     }
   }
 

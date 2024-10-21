@@ -34,12 +34,11 @@ const App = () => {
     console.log("FETCHING USER SESSION!!!")
     try {
       const userData = await CheckSession()
-      console.log("User Data:", userData) // Log the user data here
       if (userData) {
         setUser({ data: userData, role: userData.role })
       }
     } catch (error) {
-      console.error("Error fetching user session:", error)
+      console.error('Error fetching user session:', error)
     }
   }
 
@@ -76,6 +75,11 @@ const App = () => {
               path="/courses/:id"
               element={<CourseDetails user={user.data} />}
             />
+            <Route
+              path="/courses/edit"
+              element={<EditCourseForm user={user.data} />}
+            />
+
             <Route path="courses/createcourse" element={<CreateCourseForm />} />
             <Route path="/roadmap" element={<RoadmapList user={user.data} />} />
             <Route
@@ -93,7 +97,9 @@ const App = () => {
               path="/profile/data"
               element={<ProfileDisplay user={user.data} />}
             />
+
           </Routes>
+          
         </main>
         <footer className="footer">
           <div className="footer-content">
