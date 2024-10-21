@@ -8,7 +8,6 @@ import TaskDetail from "./pages/TaskDetail"
 import NewTask from "./components/NewTask"
 import Nav from "./components/Nav"
 import CourseDetails from "./pages/courseDetails"
-import CourseCard from "./components/courseCard"
 import CreateCourseForm from "./components/Newcourse"
 import CourseList from "./pages/courseList"
 import StudentProfile from "./components/StudentProfile"
@@ -20,7 +19,7 @@ import EventDetails from "./pages/EventDetail"
 import { CheckSession } from "./services/api"
 import CreateRoadmapForm from "./components/newRoadmap"
 import RoadmapList from "./pages/roadmapList"
-import roadMapCard from "./components/roadMapCard"
+import EditCourseForm from "./components/EditCourseForm"
 
 const App = () => {
   const [user, setUser] = useState({ data: null, role: null })
@@ -38,7 +37,7 @@ const App = () => {
         setUser({ data: userData, role: userData.role })
       }
     } catch (error) {
-      console.error('Error fetching user session:', error)
+      console.error("Error fetching user session:", error)
     }
   }
 
@@ -97,9 +96,7 @@ const App = () => {
               path="/profile/data"
               element={<ProfileDisplay user={user.data} />}
             />
-
           </Routes>
-          
         </main>
         <footer className="footer">
           <div className="footer-content">
