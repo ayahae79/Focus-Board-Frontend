@@ -25,7 +25,7 @@ const EventList = ({ user }) => {
   return (
     <div>
       <h1 className="eventlist-title">Event List</h1>
-      <Link to="/events/add" className="new-event-button">
+      <Link to="/events/add" className="newButton">
         Create New Event
       </Link>
       <div className="events">

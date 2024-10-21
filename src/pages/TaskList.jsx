@@ -3,7 +3,7 @@ import TaskCard from "../components/TaskCard"
 import axios from "axios"
 import { Link } from "react-router-dom"
 import styles from "../css/task.module.css" // Adjust the path as necessary
-
+import { FaPlus } from "react-icons/fa"
 const BASE_URL = "http://localhost:3000"
 
 const TaskList = ({ user }) => {
