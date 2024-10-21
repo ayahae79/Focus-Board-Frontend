@@ -1,33 +1,33 @@
-import './App.css'
-import { useState, useEffect } from 'react'
-import { Routes, Route, Navigate } from 'react-router-dom'
-import RegisterPage from './pages/RegisterPage'
-import LoginPage from './pages/LoginPage'
-import TaskList from './pages/TaskList'
-import TaskDetail from './pages/TaskDetail'
-import NewTask from './components/NewTask'
-import Nav from './components/Nav'
-import CourseDetails from './pages/courseDetails'
-import CourseCard from './components/courseCard'
-import CreateCourseForm from './components/Newcourse'
-import CourseList from './pages/courseList'
-import StudentProfile from './components/StudentProfile'
-import ProfileDisplay from './pages/ProfileDisplay'
-import UpdateTask from './components/UpdateTask'
-import EventList from './pages/EventList' // Add EventList
-import NewEvent from './components/NewEvent' // Add NewEvent
-import { CheckSession } from './services/api'
+import "./App.css"
+import { useState, useEffect } from "react"
+import { Routes, Route, Navigate } from "react-router-dom"
+import RegisterPage from "./pages/RegisterPage"
+import LoginPage from "./pages/LoginPage"
+import TaskList from "./pages/TaskList"
+import TaskDetail from "./pages/TaskDetail"
+import NewTask from "./components/NewTask"
+import Nav from "./components/Nav"
+import CourseDetails from "./pages/courseDetails"
+import CourseCard from "./components/courseCard"
+import CreateCourseForm from "./components/Newcourse"
+import CourseList from "./pages/courseList"
+import StudentProfile from "./components/StudentProfile"
+import ProfileDisplay from "./pages/ProfileDisplay"
+import UpdateTask from "./components/UpdateTask"
+import EventList from "./pages/EventList"
+import NewEvent from "./components/NewEvent"
+import EventDetails from "./pages/EventDetail"
+import { CheckSession } from "./services/api"
 
 const App = () => {
   const [user, setUser] = useState({ data: null, role: null })
 
   const handleLogOut = () => {
     setUser({ data: null, role: null })
-    localStorage.removeItem('token')
+    localStorage.removeItem("token")
   }
 
   const fetchUserSession = async () => {
-
     console.log("FETCHING USER SESSION!!!")
     try {
       const userData = await CheckSession()
@@ -63,10 +63,7 @@ const App = () => {
             />
             <Route path="/tasks" element={<TaskList />} />
             <Route path="/tasks/new" element={<NewTask user={user.data} />} />
-            <Route
-              path="/tasks/:id"
-              element={<TaskDetail user={user.data} />}
-            />
+            <Route path="/tasks/:id" element={<TaskDetail />} />
             <Route
               path="/tasks/edit/:id"
               element={<UpdateTask user={user.data} />}
@@ -76,15 +73,10 @@ const App = () => {
               path="/courses/:id"
               element={<CourseDetails user={user.data} />}
             />
-            <Route path="/events" element={<EventList />} />{' '}
-            {/* Add EventList route */}
-            <Route
-              path="/events/add"
-              element={<NewEvent user={user.data} />}
-            />{' '}
-            {/* Add NewEvent route */}
-            <Route path="/events/edit/:id" element={<NewEvent />} />{' '}
             <Route path="courses/createcourse" element={<CreateCourseForm />} />
+            <Route path="/events" element={<EventList />} />
+            <Route path="/events/add" element={<NewEvent user={user.data} />} />
+            <Route path="/events/:id" element={<EventDetails />} />
             <Route
               path="/profile"
               element={<StudentProfile user={user.data} />}

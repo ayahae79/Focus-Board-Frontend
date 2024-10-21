@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react'
-import { useParams, useNavigate } from 'react-router-dom'
-import axios from 'axios'
+import React, { useState, useEffect } from "react"
+import { useParams, useNavigate } from "react-router-dom"
+import axios from "axios"
 
-const BASE_URL = 'http://localhost:3000'
+const BASE_URL = "http://localhost:3000"
 
 const EventDetails = () => {
   const { id } = useParams()
@@ -12,10 +12,10 @@ const EventDetails = () => {
   useEffect(() => {
     const fetchEventDetails = async () => {
       try {
-        const response = await axios.get(`${BASE_URL}/event/${id}`)
+        const response = await axios.get(`${BASE_URL}/event/event/${id}`)
         setEvent(response.data)
       } catch (error) {
-        console.error('Error fetching event details:', error)
+        console.error("Error fetching event details:", error)
       }
     }
 
@@ -24,16 +24,16 @@ const EventDetails = () => {
 
   const handleDelete = async () => {
     const confirmDelete = window.confirm(
-      'Are you sure you want to delete this event?'
+      "Are you sure you want to delete this event?"
     )
     if (!confirmDelete) return
 
     try {
       await axios.delete(`${BASE_URL}/event/${id}`)
-      alert('Event deleted successfully!')
-      navigate('/events')
+      alert("Event deleted successfully!")
+      navigate("/events")
     } catch (error) {
-      console.error('Error deleting event:', error)
+      console.error("Error deleting event:", error)
     }
   }
 
@@ -46,8 +46,8 @@ const EventDetails = () => {
         <strong>Start:</strong> {new Date(event.start).toLocaleString()}
       </p>
       <p>
-        <strong>End:</strong>{' '}
-        {event.end ? new Date(event.end).toLocaleString() : 'N/A'}
+        <strong>End:</strong>{" "}
+        {event.end ? new Date(event.end).toLocaleString() : "N/A"}
       </p>
       <p>
         <strong>Task ID:</strong> {event.task}
