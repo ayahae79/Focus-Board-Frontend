@@ -18,6 +18,9 @@ import EventList from "./pages/EventList"
 import NewEvent from "./components/NewEvent"
 import EventDetails from "./pages/EventDetail"
 import { CheckSession } from "./services/api"
+import CreateRoadmapForm from "./components/newRoadmap"
+import RoadmapList from "./pages/roadmapList"
+import roadMapCard from "./components/roadMapCard"
 
 const App = () => {
   const [user, setUser] = useState({ data: null, role: null })
@@ -74,6 +77,11 @@ const App = () => {
               element={<CourseDetails user={user.data} />}
             />
             <Route path="courses/createcourse" element={<CreateCourseForm />} />
+            <Route path="/roadmap" element={<RoadmapList user={user.data} />} />
+            <Route
+              path="/roadmap/new"
+              element={<CreateRoadmapForm user={user.data} />}
+            />
             <Route path="/events" element={<EventList />} />
             <Route path="/events/add" element={<NewEvent user={user.data} />} />
             <Route path="/events/:id" element={<EventDetails />} />
