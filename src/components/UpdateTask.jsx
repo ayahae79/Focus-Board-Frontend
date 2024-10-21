@@ -1,18 +1,36 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import axios from "axios"
-import { useNavigate } from "react-router-dom"
-import styles from "../css/task.module.css"
+import { useNavigate, useParams } from "react-router-dom"
 
 const BASE_URL = "http://localhost:3000" // Ensure this is the correct base URL for your API
 
-const NewTask = ({ user }) => {
+const UpdateTask = ({ user }) => {
   const navigate = useNavigate()
+  const { id } = useParams() // Get task ID from URL parameters
 
   // Define state variables for the form fields
   const [name, setName] = useState("")
   const [description, setDescription] = useState("")
   const [deadline, setDeadline] = useState("")
   const [status, setStatus] = useState("Pending")
+
+  useEffect(() => {
+    const fetchTask = async () => {
+      try {
+        const response = await axios.get(`${BASE_URL}/tasks/tasks/${id}`)
+        const task = response.data
+
+        setName(task.name)
+        setDescription(task.description)
+        setDeadline(task.deadline.split("T")[0])
+        setStatus(task.status)
+      } catch (error) {
+        console.error("Error fetching task details:", error)
+      }
+    }
+
+    fetchTask()
+  }, [id])
 
   // Handle form field changes
   const handleChange = (e) => {
@@ -31,9 +49,6 @@ const NewTask = ({ user }) => {
       case "status":
         setStatus(value)
         break
-      case "user":
-        setTaskUser(value)
-        break
       default:
         break
     }
@@ -43,81 +58,74 @@ const NewTask = ({ user }) => {
   const handleSubmit = async (e) => {
     e.preventDefault()
     try {
-      const formData = {
+      const updatedTask = {
         name,
         description,
         deadline,
         status,
-        user: user.id,
+        user: user ? user._id : "", // Ensure user is associated with the task
       }
 
-      console.log("Submitting task:", formData)
-      await axios.post(`${BASE_URL}/tasks/add`, formData)
-      navigate("/tasks")
+      await axios.put(`${BASE_URL}/tasks/tasks/${id}`, updatedTask)
+      navigate("/tasks") // Redirect to the task list after updating
     } catch (error) {
-      console.error("Error saving the task:", error)
+      console.error("Error updating the task:", error)
     }
   }
 
   return (
-    <div className={styles.newTaskContainer}>
-      <h1 className={styles.newTaskTitle}>Create New Task</h1>
-      <form onSubmit={handleSubmit} className={styles.newTaskForm}>
-        <div className={styles.formGroup}>
-          <label htmlFor="name" className={styles.formLabel}>
-            Task Name
-          </label>
+    <div>
+      <h1>Update Task</h1>
+      <form onSubmit={handleSubmit}>
+        <div>
+          <label htmlFor="name">Task Name:</label>
           <input
             type="text"
+            id="name"
             name="name"
             value={name}
             onChange={handleChange}
-            className={styles.formInput}
+            required
           />
         </div>
-        <div className={styles.formGroup}>
-          <label htmlFor="description" className={styles.formLabel}>
-            Description
-          </label>
+        <div>
+          <label htmlFor="description">Description:</label>
           <textarea
+            id="description"
             name="description"
             value={description}
             onChange={handleChange}
-            className={styles.formInput}
           />
         </div>
-        <div className={styles.formGroup}>
-          <label htmlFor="deadline" className={styles.formLabel}>
-            Deadline
-          </label>
+        <div>
+          <label htmlFor="deadline">Deadline:</label>
           <input
             type="date"
+            id="deadline"
             name="deadline"
             value={deadline}
             onChange={handleChange}
-            className={styles.formInput}
+            required
           />
         </div>
-        <div className={styles.formGroup}>
-          <label htmlFor="status" className={styles.formLabel}>
-            Status
-          </label>
+        <div>
+          <label htmlFor="status">Status:</label>
           <select
+            id="status"
             name="status"
             value={status}
             onChange={handleChange}
-            className={styles.formSelect}
           >
             <option value="Pending">Pending</option>
             <option value="Completed">Completed</option>
+            <option value="In Progress">In Progress</option>
+            {/* Add other status options as needed */}
           </select>
         </div>
-        <button type="submit" className={styles.submitButton}>
-          Submit
-        </button>
+        <button type="submit">Update Task</button>
       </form>
     </div>
   )
 }
 
-export default NewTask
+export default UpdateTask
