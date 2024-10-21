@@ -14,7 +14,8 @@ const EventList = () => {
 
   const getEvents = async () => {
     try {
-      const response = await axios.get(`${BASE_URL}/events/allevents`)
+      const response = await axios.get(`${BASE_URL}/events`)
+      console.log(response)
       setEvents(response.data)
     } catch (error) {
       console.error('Failed to fetch events:', error)

@@ -64,6 +64,18 @@ const Nav = ({ user, handleLogOut }) => {
             <FaPlus /> Add Task{" "}
           </Link>
         </li>
+        <li>
+          <Link to="/events/add" className="nav-link">
+            {" "}
+            <FaPlus /> Add Event{" "}
+          </Link>
+        </li>
+        <li>
+          <Link to="/events" className="nav-link">
+            {" "}
+            <FaTasks /> Event List{" "}
+          </Link>
+        </li>
       </ul>
     </nav>
   )

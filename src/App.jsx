@@ -1,44 +1,41 @@
-
-import "./App.css"
-import { useState, useEffect } from "react"
-import { Routes, Route, Navigate } from "react-router-dom"
-import RegisterPage from "./pages/RegisterPage"
-import LoginPage from "./pages/LoginPage"
-import TaskList from "./pages/TaskList"
-import TaskDetail from "./pages/TaskDetail"
-import NewTask from "./components/NewTask"
-import Nav from "./components/Nav"
-import CourseDetails from "./pages/courseDetails"
-import CourseCard from "./components/courseCard"
-import CreateCourseForm from "./components/Newcourse"
-import CourseList from "./pages/courseList"
-import StudentProfile from "./components/StudentProfile"
-import ProfileDisplay from "./pages/ProfileDisplay"
-import UpdateTask from "./components/UpdateTask"
+import './App.css'
+import { useState, useEffect } from 'react'
+import { Routes, Route, Navigate } from 'react-router-dom'
+import RegisterPage from './pages/RegisterPage'
+import LoginPage from './pages/LoginPage'
+import TaskList from './pages/TaskList'
+import TaskDetail from './pages/TaskDetail'
+import NewTask from './components/NewTask'
+import Nav from './components/Nav'
+import CourseDetails from './pages/courseDetails'
+import CourseCard from './components/courseCard'
+import CreateCourseForm from './components/Newcourse'
+import CourseList from './pages/courseList'
+import StudentProfile from './components/StudentProfile'
+import ProfileDisplay from './pages/ProfileDisplay'
+import UpdateTask from './components/UpdateTask'
 import EventList from './pages/EventList' // Add EventList
 import NewEvent from './components/NewEvent' // Add NewEvent
-import { CheckSession } from "./services/api"
-
+import { CheckSession } from './services/api'
 
 const App = () => {
   const [user, setUser] = useState({ data: null, role: null })
 
   const handleLogOut = () => {
     setUser({ data: null, role: null })
-    localStorage.removeItem("token")
+    localStorage.removeItem('token')
   }
 
   const fetchUserSession = async () => {
-    console.log("FETCHING USER SESSION!!!")
-    console.log(user)
+    console.log('FETCHING USER SESSION!!!')
     try {
       const userData = await CheckSession()
+      console.log('User Data:', userData) // Log the user data here
       if (userData) {
         setUser({ data: userData, role: userData.role })
       }
     } catch (error) {
-      console.error("Error fetching user session:", error)
-      setUser({ data: null, role: null })
+      console.error('Error fetching user session:', error)
     }
   }
 
@@ -80,10 +77,12 @@ const App = () => {
             />
             <Route path="/events" element={<EventList />} />{' '}
             {/* Add EventList route */}
-            <Route path="/events/add" element={<NewEvent />} />{' '}
+            <Route
+              path="/events/add"
+              element={<NewEvent user={user.data} />}
+            />{' '}
             {/* Add NewEvent route */}
             <Route path="/events/edit/:id" element={<NewEvent />} />{' '}
-
             <Route path="courses/createcourse" element={<CreateCourseForm />} />
             <Route path="user/profile" element={<StudentProfile />} />
             <Route path="/profile/data" element={<ProfileDisplay />} />
@@ -92,7 +91,7 @@ const App = () => {
         <footer className="footer">
           <div className="footer-content">
             <p>
-              &copy; {new Date().getFullYear()} Your Company Name. All Rights
+              &copy; {new Date().getFullYear()} LearnTech University. All Rights
               Reserved. Terms of Service | Privacy Policy
             </p>
           </div>
