@@ -50,7 +50,7 @@ const EventDetails = () => {
         {event.end ? new Date(event.end).toLocaleString() : "N/A"}
       </p>
       <p>
-        <strong>Task ID:</strong> {event.task}
+        <strong>Task ID:</strong> {event.task.name}
       </p>
       <button onClick={handleDelete} className="delete-button">
         Delete Event

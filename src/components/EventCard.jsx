@@ -1,5 +1,5 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React from "react"
+import { Link } from "react-router-dom"
 
 const EventCard = ({ event }) => {
   return (
@@ -9,11 +9,12 @@ const EventCard = ({ event }) => {
         <strong>Start:</strong> {new Date(event.start).toLocaleString()}
       </p>
       <p>
-        <strong>End:</strong>{' '}
-        {event.end ? new Date(event.end).toLocaleString() : 'N/A'}
+        <strong>End:</strong>{" "}
+        {event.end ? new Date(event.end).toLocaleString() : "N/A"}
       </p>
       <p>
-        <strong>Task ID:</strong> {event.task}
+        <strong>Task: </strong> {event.task.name}
+        {/* Assuming event.task is an object */}
       </p>
       <Link to={`/events/${event._id}`} className="view-details-button">
         View Details
