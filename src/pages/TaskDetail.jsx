@@ -4,7 +4,7 @@ import axios from "axios"
 
 const BASE_URL = "http://localhost:3000"
 
-const TaskDetail = ({ user }) => {
+const TaskDetail = () => {
   const { id } = useParams()
   const navigate = useNavigate()
   const [task, setTask] = useState(null)
