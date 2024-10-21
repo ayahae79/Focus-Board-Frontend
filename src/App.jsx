@@ -1,3 +1,4 @@
+
 import "./App.css"
 import { useState, useEffect } from "react"
 import { Routes, Route, Navigate } from "react-router-dom"
@@ -14,7 +15,10 @@ import CourseList from "./pages/courseList"
 import StudentProfile from "./components/StudentProfile"
 import ProfileDisplay from "./pages/ProfileDisplay"
 import UpdateTask from "./components/UpdateTask"
+import EventList from './pages/EventList' // Add EventList
+import NewEvent from './components/NewEvent' // Add NewEvent
 import { CheckSession } from "./services/api"
+
 
 const App = () => {
   const [user, setUser] = useState({ data: null, role: null })
@@ -37,6 +41,7 @@ const App = () => {
       setUser({ data: null, role: null })
     }
   }
+
   useEffect(() => {
     fetchUserSession()
   }, [])
@@ -73,6 +78,12 @@ const App = () => {
               path="/courses/:id"
               element={<CourseDetails user={user.data} />}
             />
+            <Route path="/events" element={<EventList />} />{' '}
+            {/* Add EventList route */}
+            <Route path="/events/add" element={<NewEvent />} />{' '}
+            {/* Add NewEvent route */}
+            <Route path="/events/edit/:id" element={<NewEvent />} />{' '}
+
             <Route path="courses/createcourse" element={<CreateCourseForm />} />
             <Route path="user/profile" element={<StudentProfile />} />
             <Route path="/profile/data" element={<ProfileDisplay />} />
