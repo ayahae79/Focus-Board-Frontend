@@ -1,14 +1,14 @@
-import Axios from "axios"
+import Axios from 'axios'
 
-export const BASE_URL = "http://localhost:3000"
+export const BASE_URL = 'http://localhost:3000'
 
 const axiosClient = Axios.create({ baseURL: BASE_URL })
 
 axiosClient.interceptors.request.use(
   (config) => {
-    const token = localStorage.getItem("token")
+    const token = localStorage.getItem('token')
     if (token) {
-      config.headers["Authorization"] = `Bearer ${token}`
+      config.headers['Authorization'] = `Bearer ${token}`
     }
     return config
   },
@@ -17,10 +17,10 @@ axiosClient.interceptors.request.use(
 
 export const CheckSession = async () => {
   try {
-    const response = await axiosClient.get("/user/session")
+    const response = await axiosClient.get('/user/session')
     return response.data
   } catch (error) {
-    console.error("Error checking session:", error)
+    console.error('Error checking session:', error)
     return null
   }
 }

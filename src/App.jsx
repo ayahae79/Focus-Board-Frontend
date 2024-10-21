@@ -14,6 +14,9 @@ import CourseList from "./pages/courseList"
 import StudentProfile from "./components/StudentProfile"
 import ProfileDisplay from "./pages/ProfileDisplay"
 import UpdateTask from "./components/UpdateTask"
+import EventList from "./pages/EventList"
+import NewEvent from "./components/NewEvent"
+import EventDetails from "./pages/EventDetail"
 import { CheckSession } from "./services/api"
 import CreateRoadmapForm from "./components/newRoadmap"
 import RoadmapList from "./pages/roadmapList"
@@ -31,15 +34,15 @@ const App = () => {
     console.log("FETCHING USER SESSION!!!")
     try {
       const userData = await CheckSession()
-      console.log(userData)
+      console.log("User Data:", userData) // Log the user data here
       if (userData) {
         setUser({ data: userData, role: userData.role })
       }
     } catch (error) {
       console.error("Error fetching user session:", error)
-      setUser({ data: null, role: null })
     }
   }
+
   useEffect(() => {
     fetchUserSession()
   }, [])
@@ -63,10 +66,7 @@ const App = () => {
             />
             <Route path="/tasks" element={<TaskList />} />
             <Route path="/tasks/new" element={<NewTask user={user.data} />} />
-            <Route
-              path="/tasks/:id"
-              element={<TaskDetail user={user.data} />}
-            />
+            <Route path="/tasks/:id" element={<TaskDetail />} />
             <Route
               path="/tasks/edit/:id"
               element={<UpdateTask user={user.data} />}
@@ -77,19 +77,28 @@ const App = () => {
               element={<CourseDetails user={user.data} />}
             />
             <Route path="courses/createcourse" element={<CreateCourseForm />} />
-            <Route path="user/profile" element={<StudentProfile />} />
             <Route path="/roadmap" element={<RoadmapList user={user.data} />} />
             <Route
               path="/roadmap/new"
               element={<CreateRoadmapForm user={user.data} />}
             />
-            <Route path="/profile/data" element={<ProfileDisplay />} />
+            <Route path="/events" element={<EventList />} />
+            <Route path="/events/add" element={<NewEvent user={user.data} />} />
+            <Route path="/events/:id" element={<EventDetails />} />
+            <Route
+              path="/profile"
+              element={<StudentProfile user={user.data} />}
+            />
+            <Route
+              path="/profile/data"
+              element={<ProfileDisplay user={user.data} />}
+            />
           </Routes>
         </main>
         <footer className="footer">
           <div className="footer-content">
             <p>
-              &copy; {new Date().getFullYear()} Your Company Name. All Rights
+              &copy; {new Date().getFullYear()} LearnTech University. All Rights
               Reserved. Terms of Service | Privacy Policy
             </p>
           </div>

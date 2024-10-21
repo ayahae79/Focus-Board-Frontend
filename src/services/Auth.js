@@ -1,6 +1,6 @@
-import axiosClient from "./api"
+import axiosClient from './api'
 
-const API_URL = "http://localhost:3000"
+const API_URL = 'http://localhost:3000'
 
 export const RegisterUser = async (userData) => {
   const response = await axiosClient.post(`${API_URL}/user/register`, userData)
@@ -10,7 +10,7 @@ export const RegisterUser = async (userData) => {
 export const SignInUser = async (data) => {
   try {
     const res = await axiosClient.post(`${API_URL}/user/login`, data)
-    localStorage.setItem("token", res.data.token)
+    localStorage.setItem('token', res.data.token)
     return res.data.user
   } catch (error) {
     throw error
