@@ -7,6 +7,7 @@ import { CgProfile } from "react-icons/cg"
 
 const Nav = ({ user, handleLogOut }) => {
   const isAdmin = user && user.role === "admin"
+  console.log(isAdmin)
 
   const adminOptions = (
     <nav className="nav">
@@ -21,18 +22,6 @@ const Nav = ({ user, handleLogOut }) => {
           <Link onClick={handleLogOut} to="/" className="nav-link">
             {" "}
             <FaPowerOff /> Sign Out{" "}
-          </Link>
-        </li>
-        <li>
-          <Link to="/tasks" className="nav-link">
-            {" "}
-            <FaTasks /> Task List{" "}
-          </Link>
-        </li>
-        <li>
-          <Link to="/tasks/new" className="nav-link">
-            {" "}
-            <FaPlus /> Add Task{" "}
           </Link>
         </li>
         <li>
@@ -72,28 +61,13 @@ const Nav = ({ user, handleLogOut }) => {
           </Link>
         </li>
         <li>
-          <Link to="/tasks/new" className="nav-link">
-            <FaPlus /> Add Task
-          </Link>
-        </li>
-        <li>
           <Link to="/roadmap" className="nav-link">
             <GoProjectRoadmap /> Roadmap List
           </Link>
         </li>
         <li>
-          <Link to="/roadmap/new" className="nav-link">
-            <FaPlus /> Add Roadmap
-          </Link>
-        </li>
-        <li>
           <Link to="/events" className="nav-link">
             <MdEventNote /> Event List
-          </Link>
-        </li>
-        <li>
-          <Link to="/events/add" className="nav-link">
-            <FaPlus /> Add Event
           </Link>
         </li>
         <li>

@@ -1,26 +1,31 @@
 import "./App.css"
 import { useState, useEffect } from "react"
 import { Routes, Route, Navigate } from "react-router-dom"
+import { CheckSession } from "./services/api"
+//user imports
+import Nav from "./components/Nav"
 import RegisterPage from "./pages/RegisterPage"
 import LoginPage from "./pages/LoginPage"
+import StudentProfile from "./components/StudentProfile"
+import ProfileDisplay from "./pages/ProfileDisplay"
+//tasks imports
 import TaskList from "./pages/TaskList"
 import TaskDetail from "./pages/TaskDetail"
 import NewTask from "./components/NewTask"
-import Nav from "./components/Nav"
+import UpdateTask from "./components/UpdateTask"
+//course imports
 import CourseDetails from "./pages/courseDetails"
 import CreateCourseForm from "./components/Newcourse"
 import CourseList from "./pages/courseList"
-import StudentProfile from "./components/StudentProfile"
-import ProfileDisplay from "./pages/ProfileDisplay"
-import UpdateTask from "./components/UpdateTask"
+import EditCourseForm from "./components/EditCourseForm"
+import UserCourse from "./pages/UserCourse"
+//event imports
 import EventList from "./pages/EventList"
 import NewEvent from "./components/NewEvent"
 import EventDetails from "./pages/EventDetail"
-import { CheckSession } from "./services/api"
+//roudmap imports
 import CreateRoadmapForm from "./components/newRoadmap"
 import RoadmapList from "./pages/roadmapList"
-import EditCourseForm from "./components/EditCourseForm"
-import UserCourse from "./pages/UserCourse"
 
 const App = () => {
   const [user, setUser] = useState({ data: null, role: null })
@@ -36,6 +41,7 @@ const App = () => {
       const userData = await CheckSession()
       if (userData) {
         setUser({ data: userData, role: userData.role })
+        console.log(userData.role)
       }
     } catch (error) {
       console.error("Error fetching user session:", error)
@@ -52,6 +58,7 @@ const App = () => {
         <Nav user={user.data} handleLogOut={handleLogOut} />
         <main>
           <Routes>
+            {/* user routs */}
             <Route path="/" element={<Navigate to="/login" />} />
             <Route path="/register" element={<RegisterPage />} />
             <Route
@@ -63,6 +70,16 @@ const App = () => {
                 />
               }
             />
+            <Route
+              path="/profile"
+              element={<StudentProfile user={user.data} />}
+            />
+            <Route
+              path="/profile/data"
+              element={<ProfileDisplay user={user.data} />}
+            />
+
+            {/* task routs */}
             <Route path="/tasks" element={<TaskList user={user.data} />} />
             <Route path="/tasks/new" element={<NewTask user={user.data} />} />
             <Route path="/tasks/:id" element={<TaskDetail />} />
@@ -70,6 +87,8 @@ const App = () => {
               path="/tasks/edit/:id"
               element={<UpdateTask user={user.data} />}
             />
+
+            {/* course routs  */}
             <Route path="/courses" element={<CourseList user={user.data} />} />
             <Route
               path="/mycourses"
@@ -85,22 +104,18 @@ const App = () => {
             />
 
             <Route path="courses/createcourse" element={<CreateCourseForm />} />
+
+            {/* roadmap routs   */}
             <Route path="/roadmap" element={<RoadmapList user={user.data} />} />
             <Route
               path="/roadmap/new"
               element={<CreateRoadmapForm user={user.data} />}
             />
+
+            {/* events routs  */}
             <Route path="/events" element={<EventList user={user.data} />} />
             <Route path="/events/add" element={<NewEvent user={user.data} />} />
             <Route path="/events/:id" element={<EventDetails />} />
-            <Route
-              path="/profile"
-              element={<StudentProfile user={user.data} />}
-            />
-            <Route
-              path="/profile/data"
-              element={<ProfileDisplay user={user.data} />}
-            />
           </Routes>
         </main>
         <footer className="footer">

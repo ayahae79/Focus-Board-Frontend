@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react"
 import axios from "axios"
-
+import { Link } from "react-router-dom"
 import RoadMapCard from "../components/roadMapCard"
 import { useNavigate } from "react-router-dom"
 
@@ -45,12 +45,19 @@ const RoadmapList = ({ user }) => {
   return (
     <div>
       <h1 className="roadmaplist-title">Student Roadmaps</h1>
+      <Link to="/roadmap/new" className="newButton">
+        Add Roadmap
+      </Link>
       <div className="roadmaps">
-        {roadmaps.map((roadmap) => (
-          <div key={roadmap._id}>
-            <RoadMapCard roadmap={roadmap} onDelete={handleDelete} />
-          </div>
-        ))}
+        {roadmaps.length > 0 ? (
+          roadmaps.map((roadmap) => (
+            <div key={roadmap._id}>
+              <RoadMapCard roadmap={roadmap} onDelete={handleDelete} />
+            </div>
+          ))
+        ) : (
+          <p>No roadmaps available. Please create a roadmap.</p>
+        )}
       </div>
     </div>
   )
