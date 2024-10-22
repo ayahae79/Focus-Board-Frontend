@@ -38,8 +38,13 @@ const ProfileDisplay = ({ user }) => {
   }
 
   return (
-    <div className="container">
+    <div className="containerprofile">
       <h1>Profile Details</h1>
+      <img
+        src={userData.profile_picture || "default-profile.png"}
+        alt="User  Profile"
+        className="profile-picture"
+      />
       <div className="profile-card">
         <div className="profile-info">
           <strong>Full Name:</strong> <span>{userData.full_name}</span>

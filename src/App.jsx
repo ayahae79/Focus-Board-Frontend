@@ -29,7 +29,9 @@ import RoadmapList from "./pages/roadmapList";
 // Drop Requests import
 // import DropRequests from "./pages/DropRequests";
 // Import the Calendar component
-import Calendar from "./components/Calendar";
+import Calendar from "./components/Calendar"
+import Dashboard from "./pages/Dashboard"
+
 
 const App = () => {
   const [user, setUser] = useState({ data: null, role: null });
@@ -81,6 +83,10 @@ const App = () => {
             <Route
               path="/profile/data"
               element={<ProfileDisplay user={user.data} />}
+            />
+             <Route
+              path="/Dashboard"
+              element={<Dashboard user={user.data} />}
             />
             {/* Calendar route */}
             <Route path="/calendar" element={<Calendar user={user.data} />} />
