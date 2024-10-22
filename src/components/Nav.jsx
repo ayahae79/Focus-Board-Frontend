@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { FaHome, FaPowerOff, FaTasks, FaPlus } from 'react-icons/fa'
+import { FaHome, FaPowerOff, FaTasks, FaPlus, FaCalendar } from 'react-icons/fa'
 import { RiLoginBoxLine, RiUserAddLine } from 'react-icons/ri'
 
 const Nav = ({ user, handleLogOut }) => {
@@ -85,6 +85,12 @@ const Nav = ({ user, handleLogOut }) => {
           <Link to="/courses/createcourse" className="nav-link">
             {' '}
             <FaPlus /> Add Course{' '}
+          </Link>
+        </li>
+        <li>
+          <Link to="/calendar" className="nav-link">
+            {' '}
+            <FaCalendar /> Calendar{' '}
           </Link>
         </li>
       </ul>

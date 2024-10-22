@@ -8,14 +8,15 @@ import TaskDetail from './pages/TaskDetail'
 import NewTask from './components/NewTask'
 import Nav from './components/Nav'
 import CourseDetails from './pages/courseDetails'
-import CreateCourseForm from './components/Newcourse' // This is for adding a new course
-import EditCourseForm from './components/EditCourseForm' // This is for editing a course
+import CreateCourseForm from './components/Newcourse' // For adding a new course
+import EditCourseForm from './components/EditCourseForm' // For editing a course
 import CourseList from './pages/courseList'
 import StudentProfile from './components/StudentProfile'
 import ProfileDisplay from './pages/ProfileDisplay'
 import UpdateTask from './components/UpdateTask'
 import EventList from './pages/EventList'
 import NewEvent from './components/NewEvent'
+import Calendar from './components/Calendar' // Import the Calendar component
 import { CheckSession } from './services/api'
 
 const App = () => {
@@ -84,8 +85,12 @@ const App = () => {
             <Route path="/events/add" element={<NewEvent user={user.data} />} />
             <Route path="/user/profile" element={<StudentProfile />} />
             <Route path="/profile/data" element={<ProfileDisplay />} />
+            <Route
+              path="/calendar"
+              element={<Calendar user={user.data} />}
+            />{' '}
+            {/* Calendar route */}
           </Routes>
-          
         </main>
         <footer className="footer">
           <div className="footer-content">

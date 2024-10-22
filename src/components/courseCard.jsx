@@ -1,4 +1,4 @@
-import React from "react"
+import React from 'react'
 
 const CourseCard = ({ course, onEdit, onDelete }) => {
   // Check if lectureSchedule exists and has at least one item
@@ -10,11 +10,22 @@ const CourseCard = ({ course, onEdit, onDelete }) => {
       <h2 className="course-title">{course.title}</h2>
       <p className="course-description">{course.description}</p>
       <p className="course-lecture-date">Lecture Date: {course.lecturedate}</p>
-          <p className="course-start-time">Start Time: {course.startTime}</p>
-          <p className="course-end-time">
-            End Time: {course.endTime}
-          </p>
-        
+      <p className="course-start-time">Start Time: {course.startTime}</p>
+      <p className="course-end-time">End Time: {course.endTime}</p>
+
+      {hasLectureSchedule && (
+        <div className="lecture-schedule">
+          <h3>Lecture Schedule:</h3>
+          <ul>
+            {course.lectureSchedule.map((lecture, index) => (
+              <li key={index}>
+                {lecture.date}: {lecture.topic}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+
       <div className="course-actions">
         <button onClick={() => onEdit(course)}>Edit</button>
         <button onClick={() => onDelete(course._id)}>Delete</button>
