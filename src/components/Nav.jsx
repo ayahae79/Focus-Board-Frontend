@@ -87,6 +87,11 @@ const Nav = ({ user, handleLogOut }) => {
             <FaCalendar /> Calendar{' '}
           </Link>
         </li>
+        <li>
+          <Link to="/schedule" className="nav-link">
+            <FaCalendar /> Schedule
+          </Link>
+        </li>
       </ul>
     </nav>
   )
@@ -112,6 +117,7 @@ const Nav = ({ user, handleLogOut }) => {
             <RiLoginBoxLine /> Sign In{" "}
           </Link>
         </li>
+        
       </ul>
     </nav>
   )
