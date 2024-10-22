@@ -27,7 +27,7 @@ import EventDetails from "./pages/EventDetail";
 import CreateRoadmapForm from "./components/newRoadmap";
 import RoadmapList from "./pages/roadmapList";
 // Drop Requests import
-import DropRequests from "./pages/DropRequests";
+// import DropRequests from "./pages/DropRequests";
 // Import the Calendar component
 import Calendar from "./components/Calendar";
 
@@ -111,9 +111,9 @@ const App = () => {
               element={<CreateCourseForm />}
             />
             {/* Drop Requests route */}
-            {user.role === 'admin' && (
+            {/* {user.role === 'admin' && (
               <Route path="/drop-requests" element={<DropRequests />} />
-            )}
+            )} */}
             {/* Roadmap routes */}
             <Route path="/roadmap" element={<RoadmapList user={user.data} />} />
             <Route
