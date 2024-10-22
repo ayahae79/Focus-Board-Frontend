@@ -140,7 +140,7 @@ nav li {
 /* Main Content Styles */
 main {
   margin-left: 250px;
-  padding: 2rem 0 0 2rem;
+  padding: 20px 0 0 20px;
   flex-grow: 1;
   background-color: #ffffff;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -180,6 +180,7 @@ footer {
   padding: 20px;
   max-width: 800px;
   margin: auto;
+  margin: 0 10px 10px 0;
 }
 
 .calendar-grid {
@@ -194,18 +195,57 @@ footer {
 
 .calendar-day {
   border: 1px solid #ccc;
-  padding: 10px;
   min-height: 100px; /* Adjust height as needed */
   position: relative;
 }
 
 .event {
-  background-color: #f0f0f0;
-  border: 1px solid #007bff;
-  margin-top: 5px;
+  background-color: #90caf9;
+  margin-top: 15px;
   padding: 5px;
   font-size: 12px;
-  border-radius: 3px;
+  position: relative;
+}
+.calendar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background-color: #f1f1f1;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+.month-button {
+  background-color: #90caf9;
+  color: #003f7f;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.month-button:hover {
+  background-color: #b8d3e9;
+}
+
+.month-button:active {
+  transform: scale(0.95);
+}
+
+.month-title {
+  font-size: 24px;
+  color: #333;
+  text-align: center;
+  transition: opacity 0.5s ease;
+}
+
+/* Transition effect for changing months */
+.calendar-header {
+  transition: all 0.5s ease;
 }
 
 .newButton {

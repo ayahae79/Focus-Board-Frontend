@@ -1,59 +1,62 @@
-import "./App.css"
-import { useState, useEffect } from "react"
-import { Routes, Route, Navigate } from "react-router-dom"
-import { CheckSession } from "./services/api"
-//user imports
-import Nav from "./components/Nav"
-import RegisterPage from "./pages/RegisterPage"
-import LoginPage from "./pages/LoginPage"
-import StudentProfile from "./components/StudentProfile"
-import ProfileDisplay from "./pages/ProfileDisplay"
-//tasks imports
-import TaskList from "./pages/TaskList"
-import TaskDetail from "./pages/TaskDetail"
-import NewTask from "./components/NewTask"
-import UpdateTask from "./components/UpdateTask"
-//course imports
-import CourseDetails from "./pages/courseDetails"
-import CreateCourseForm from "./components/Newcourse"
-import CourseList from "./pages/courseList"
-import EditCourseForm from "./components/EditCourseForm"
-import UserCourse from "./pages/UserCourse"
-//event imports
-import EventList from "./pages/EventList"
-import NewEvent from "./components/NewEvent"
-import EventDetails from "./pages/EventDetail"
-//roudmap imports
-import CreateRoadmapForm from "./components/newRoadmap"
-import RoadmapList from "./pages/roadmapList"
+import "./App.css";
+import { useState, useEffect } from "react";
+import { Routes, Route, Navigate } from "react-router-dom";
+import { CheckSession } from "./services/api";
+// user imports
+import Nav from "./components/Nav";
+import RegisterPage from "./pages/RegisterPage";
+import LoginPage from "./pages/LoginPage";
+import StudentProfile from "./components/StudentProfile";
+import ProfileDisplay from "./pages/ProfileDisplay";
+// tasks imports
+import TaskList from "./pages/TaskList";
+import TaskDetail from "./pages/TaskDetail";
+import NewTask from "./components/NewTask";
+import UpdateTask from "./components/UpdateTask";
+// course imports
+import CourseDetails from "./pages/courseDetails";
+import CreateCourseForm from "./components/Newcourse";
+import CourseList from "./pages/courseList";
+import EditCourseForm from "./components/EditCourseForm";
+import UserCourse from "./pages/UserCourse";
+// event imports
+import EventList from "./pages/EventList";
+import NewEvent from "./components/NewEvent";
+import EventDetails from "./pages/EventDetail";
+// roadmap imports
+import CreateRoadmapForm from "./components/newRoadmap";
+import RoadmapList from "./pages/roadmapList";
+// Drop Requests import
+// import DropRequests from "./pages/DropRequests";
 // Import the Calendar component
 import Calendar from "./components/Calendar"
 import Dashboard from "./pages/Dashboard"
 
+
 const App = () => {
-  const [user, setUser] = useState({ data: null, role: null })
+  const [user, setUser] = useState({ data: null, role: null });
 
   const handleLogOut = () => {
-    setUser({ data: null, role: null })
-    localStorage.removeItem("token")
-  }
+    setUser({ data: null, role: null });
+    localStorage.removeItem("token");
+  };
 
   const fetchUserSession = async () => {
-    console.log("FETCHING USER SESSION!!!")
+    console.log("FETCHING USER SESSION!!!");
     try {
-      const userData = await CheckSession()
+      const userData = await CheckSession();
       if (userData) {
-        setUser({ data: userData, role: userData.role })
-        console.log(userData.role)
+        setUser({ data: userData, role: userData.role });
+        console.log(userData.role);
       }
     } catch (error) {
-      console.error("Error fetching user session:", error)
+      console.error("Error fetching user session:", error);
     }
-  }
+  };
 
   useEffect(() => {
-    fetchUserSession()
-  }, [])
+    fetchUserSession();
+  }, []);
 
   return (
     <div className="App">
@@ -61,7 +64,7 @@ const App = () => {
         <Nav user={user.data} handleLogOut={handleLogOut} />
         <main>
           <Routes>
-            {/* user routs */}
+            {/* User routes */}
             <Route path="/" element={<Navigate to="/login" />} />
             <Route path="/register" element={<RegisterPage />} />
             <Route
@@ -86,11 +89,8 @@ const App = () => {
               element={<Dashboard user={user.data} />}
             />
             {/* Calendar route */}
-            <Route
-              path="/calendar"
-              element={<Calendar user={user.data} />}
-            />{" "}
-            {/* task routs */}
+            <Route path="/calendar" element={<Calendar user={user.data} />} />
+            {/* Task routes */}
             <Route path="/tasks" element={<TaskList user={user.data} />} />
             <Route path="/tasks/new" element={<NewTask user={user.data} />} />
             <Route path="/tasks/:id" element={<TaskDetail />} />
@@ -98,7 +98,7 @@ const App = () => {
               path="/tasks/edit/:id"
               element={<UpdateTask user={user.data} />}
             />
-            {/* course routs  */}
+            {/* Course routes */}
             <Route path="/courses" element={<CourseList user={user.data} />} />
             <Route
               path="/mycourses"
@@ -112,14 +112,21 @@ const App = () => {
               path="/courses/edit"
               element={<EditCourseForm user={user.data} />}
             />
-            <Route path="courses/createcourse" element={<CreateCourseForm />} />
-            {/* roadmap routs   */}
+            <Route
+              path="/courses/createcourse"
+              element={<CreateCourseForm />}
+            />
+            {/* Drop Requests route */}
+            {/* {user.role === 'admin' && (
+              <Route path="/drop-requests" element={<DropRequests />} />
+            )} */}
+            {/* Roadmap routes */}
             <Route path="/roadmap" element={<RoadmapList user={user.data} />} />
             <Route
               path="/roadmap/new"
               element={<CreateRoadmapForm user={user.data} />}
             />
-            {/* events routs  */}
+            {/* Events routes */}
             <Route path="/events" element={<EventList user={user.data} />} />
             <Route path="/events/add" element={<NewEvent user={user.data} />} />
             <Route path="/events/:id" element={<EventDetails />} />
@@ -135,7 +142,7 @@ const App = () => {
         </footer>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default App
+export default App;

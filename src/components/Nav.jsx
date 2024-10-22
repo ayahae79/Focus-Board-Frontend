@@ -5,6 +5,7 @@ import { RiLoginBoxLine, RiUserAddLine } from "react-icons/ri"
 import { GoProjectRoadmap } from "react-icons/go"
 import { MdEventNote } from "react-icons/md"
 import { CgProfile } from "react-icons/cg"
+import { FaDeleteLeft } from "react-icons/fa6"
 
 
 const Nav = ({ user, handleLogOut }) => {
@@ -34,6 +35,9 @@ const Nav = ({ user, handleLogOut }) => {
         <li>
           <Link to="/courses/createcourse" className="nav-link">
             <FaPlus /> Add Course
+          </Link>
+          <Link to="/drop-requests" className="nav-link">
+            <FaDeleteLeft /> Drop Requests
           </Link>
         </li>
       </ul>

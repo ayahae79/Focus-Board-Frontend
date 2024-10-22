@@ -1,34 +1,31 @@
-import React, { useState, useEffect } from 'react'
-import axios from 'axios'
+import React, { useState, useEffect } from "react"
+import axios from "axios"
 
-const Calendar = () => {
+const BASE_URL = "http://localhost:3000"
+
+const Calendar = ({ user }) => {
   const [events, setEvents] = useState([])
-  const [courses, setCourses] = useState([])
   const [currentMonth, setCurrentMonth] = useState(new Date())
 
   useEffect(() => {
-    const fetchEventsAndCourses = async () => {
-      try {
-        const eventResponse = await axios.get(
-          'http://localhost:3000/event/events'
-        )
+    getEvents()
+  }, [user])
 
-        const courseResponse = await axios.get('http://localhost:3000/courses')
-        setEvents(eventResponse.data)
-        setCourses(courseResponse.data)
-      } catch (error) {
-        console.error('Error fetching data:', error)
-      }
+  const getEvents = async () => {
+    try {
+      const response = await axios.get(`${BASE_URL}/user/myEvents/${user.id}`)
+      setEvents(response.data.event)
+    } catch (error) {
+      console.error("Failed to fetch events:", error.response || error.message)
     }
-
-    fetchEventsAndCourses()
-  }, [])
+  }
 
   const daysInMonth = new Date(
     currentMonth.getFullYear(),
     currentMonth.getMonth() + 1,
     0
   ).getDate()
+
   const firstDayOfMonth = new Date(
     currentMonth.getFullYear(),
     currentMonth.getMonth(),
@@ -37,34 +34,52 @@ const Calendar = () => {
 
   const getDayEvents = (day) => {
     return events.filter((event) => {
-      const eventDate = new Date(event.start).getDate()
-      const eventMonth = new Date(event.start).getMonth()
-      const eventYear = new Date(event.start).getFullYear()
+      const eventStartDate = new Date(event.start)
+      const eventEndDate = event.end ? new Date(event.end) : eventStartDate
+      const eventDay = eventStartDate.getDate()
       return (
-        eventDate === day &&
-        eventMonth === currentMonth.getMonth() &&
-        eventYear === currentMonth.getFullYear()
+        eventStartDate.getFullYear() === currentMonth.getFullYear() &&
+        eventStartDate.getMonth() === currentMonth.getMonth() &&
+        day >= eventStartDate.getDate() &&
+        day <= eventEndDate.getDate()
       )
     })
   }
 
-  const getDayCourses = (day) => {
-    return courses.filter((course) => {
-      const courseDate = new Date(course.lecturedate).getDate()
-      const courseMonth = new Date(course.lecturedate).getMonth()
-      const courseYear = new Date(course.lecturedate).getFullYear()
-      return (
-        courseDate === day &&
-        courseMonth === currentMonth.getMonth() &&
-        courseYear === currentMonth.getFullYear()
-      )
-    })
-  }
+  const renderDays = () => {
+    const days = []
+    for (let day = 1; day <= daysInMonth; day++) {
+      const dayEvents = getDayEvents(day)
 
+      days.push(
+        <div key={day} className="calendar-day">
+          <span>{day}</span>
+          {dayEvents.map((event) => (
+            <div
+              key={event.id}
+              className="event"
+              style={{
+                gridColumn: `span ${
+                  new Date(event.end).getDate() -
+                  new Date(event.start).getDate() +
+                  1
+                }`,
+              }}
+            >
+              <strong>{event.name}</strong>
+            </div>
+          ))}
+        </div>
+      )
+    }
+
+    return days
+  }
   return (
     <div className="calendar">
       <div className="calendar-header">
         <button
+          className="month-button"
           onClick={() =>
             setCurrentMonth(
               new Date(currentMonth.setMonth(currentMonth.getMonth() - 1))
@@ -73,11 +88,14 @@ const Calendar = () => {
         >
           Previous Month
         </button>
-        <h2>
-          {currentMonth.toLocaleString('default', { month: 'long' })}{' '}
+
+        <h2 className="month-title">
+          {currentMonth.toLocaleString("default", { month: "long" })}{" "}
           {currentMonth.getFullYear()}
         </h2>
+
         <button
+          className="month-button"
           onClick={() =>
             setCurrentMonth(
               new Date(currentMonth.setMonth(currentMonth.getMonth() + 1))
@@ -87,6 +105,8 @@ const Calendar = () => {
           Next Month
         </button>
       </div>
+
+      {/* Day Names */}
       <div className="calendar-grid">
         <div className="calendar-day-name">Sun</div>
         <div className="calendar-day-name">Mon</div>
@@ -96,28 +116,8 @@ const Calendar = () => {
         <div className="calendar-day-name">Fri</div>
         <div className="calendar-day-name">Sat</div>
 
-        {Array.from({ length: firstDayOfMonth }).map((_, index) => (
-          <div key={index} className="calendar-day empty"></div>
-        ))}
-
-        {Array.from({ length: daysInMonth }).map((_, index) => {
-          const day = index + 1
-          return (
-            <div key={day} className="calendar-day">
-              <span>{day}</span>
-              {getDayCourses(day).map((course) => (
-                <div key={course._id} className="event">
-                  <strong>Course:</strong> {course.title}
-                </div>
-              ))}
-              {getDayEvents(day).map((event) => (
-                <div key={event.id} className="event">
-                  <strong>Event:</strong> {event.title}
-                </div>
-              ))}
-            </div>
-          )
-        })}
+        {/* Render Days */}
+        {renderDays()}
       </div>
     </div>
   )

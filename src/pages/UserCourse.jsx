@@ -25,33 +25,13 @@ const CourseList = ({ user }) => {
     navigate("/courses/edit", { state: { course } })
   }
 
-  const handleDelete = async (courseId) => {
-    const confirmDelete = window.confirm(
-      "Are you sure you want to delete this course?"
-    )
-    if (!confirmDelete) return
-
-    try {
-      await axios.delete(`${BASE_URL}/course/courses/${courseId}`)
-      setCourses(courses.filter((course) => course._id !== courseId))
-      alert("Course deleted successfully!")
-    } catch (error) {
-      console.error("Error deleting course:", error)
-    }
-  }
-
   return (
     <div>
       <h1 className="courselist-title">Student Courses</h1>
       <div className="courses">
         {courses.map((course) => (
           <div key={course._id}>
-            <CourseCard
-              user={user}
-              course={course}
-              onEdit={handleEdit}
-              onDelete={handleDelete}
-            />
+            <CourseCard user={user} course={course} onEdit={handleEdit} />
           </div>
         ))}
       </div>
