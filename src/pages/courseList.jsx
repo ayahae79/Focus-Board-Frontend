@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from 'react'
-import axios from 'axios'
-import CourseCard from '../components/CourseCard'
-import { useNavigate } from 'react-router-dom'
-
-const BASE_URL = 'http://localhost:3000'
+import React, { useState, useEffect } from "react"
+import axios from "axios"
+import CourseCard from "../components/courseCard"
+import { useNavigate } from "react-router-dom"
+const BASE_URL = "http://localhost:3000"
 
 const CourseList = ({ user }) => {
   const [courses, setCourses] = useState([])
@@ -18,7 +17,7 @@ const CourseList = ({ user }) => {
       const response = await axios.get(`${BASE_URL}/course/courses`)
       setCourses(response.data)
     } catch (error) {
-      console.error('Failed to fetch courses:', error)
+      console.error("Failed to fetch courses:", error)
     }
   }
 
@@ -38,6 +37,7 @@ const CourseList = ({ user }) => {
       alert('Course deleted successfully!')
     } catch (error) {
       console.error('Error deleting course:', error)
+
     }
   }
 
