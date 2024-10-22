@@ -1,35 +1,3 @@
-
-import './App.css'
-import { useState, useEffect } from 'react'
-import { Routes, Route, Navigate } from 'react-router-dom'
-import { CheckSession } from './services/api'
-//user imports
-import Nav from './components/Nav'
-import RegisterPage from './pages/RegisterPage'
-import LoginPage from './pages/LoginPage'
-import StudentProfile from './components/StudentProfile'
-import ProfileDisplay from './pages/ProfileDisplay'
-//tasks imports
-import TaskList from './pages/TaskList'
-import TaskDetail from './pages/TaskDetail'
-import NewTask from './components/NewTask'
-import UpdateTask from './components/UpdateTask'
-//course imports
-import CourseDetails from './pages/courseDetails'
-import CreateCourseForm from './components/Newcourse'
-import CourseList from './pages/courseList'
-import EditCourseForm from './components/EditCourseForm'
-import UserCourse from './pages/UserCourse'
-//event imports
-import EventList from './pages/EventList'
-import NewEvent from './components/NewEvent'
-import EventDetails from './pages/EventDetail'
-//roudmap imports
-import CreateRoadmapForm from './components/newRoadmap'
-import RoadmapList from './pages/roadmapList'
-// Import the Calendar component
-import Calendar from './components/Calendar'
-=======
 import "./App.css"
 import { useState, useEffect } from "react"
 import { Routes, Route, Navigate } from "react-router-dom"
@@ -58,18 +26,19 @@ import EventDetails from "./pages/EventDetail"
 //roudmap imports
 import CreateRoadmapForm from "./components/newRoadmap"
 import RoadmapList from "./pages/roadmapList"
-
+// Import the Calendar component
+import Calendar from "./components/Calendar"
 
 const App = () => {
   const [user, setUser] = useState({ data: null, role: null })
 
   const handleLogOut = () => {
     setUser({ data: null, role: null })
-    localStorage.removeItem('token')
+    localStorage.removeItem("token")
   }
 
   const fetchUserSession = async () => {
-    console.log('FETCHING USER SESSION!!!')
+    console.log("FETCHING USER SESSION!!!")
     try {
       const userData = await CheckSession()
       if (userData) {
@@ -115,8 +84,7 @@ const App = () => {
             <Route
               path="/calendar"
               element={<Calendar user={user.data} />}
-            />{' '}
-
+            />{" "}
             {/* task routs */}
             <Route path="/tasks" element={<TaskList user={user.data} />} />
             <Route path="/tasks/new" element={<NewTask user={user.data} />} />
@@ -140,7 +108,6 @@ const App = () => {
               element={<EditCourseForm user={user.data} />}
             />
             <Route path="courses/createcourse" element={<CreateCourseForm />} />
-
             {/* roadmap routs   */}
             <Route path="/roadmap" element={<RoadmapList user={user.data} />} />
             <Route
