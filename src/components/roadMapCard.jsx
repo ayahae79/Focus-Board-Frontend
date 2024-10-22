@@ -19,7 +19,7 @@ const RoadMapCard = ({ roadmap, onEdit, onDelete }) => {
       <p className="roadmap-tasks">Tasks: {getTaskNames(roadmap.tasks)}</p>
 
       <div className="roadmap-actions">
-        <button onClick={() => onEdit(roadmap)}>Edit</button>
+       
         <button onClick={() => onDelete(roadmap._id)}>Delete</button>
       </div>
     </div>
