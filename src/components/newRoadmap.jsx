@@ -24,7 +24,6 @@ const CreateRoadmapForm = ({ user }) => {
     }
   }
 
-  // Call fetchTasksAndCourses when the component mounts
   useEffect(() => {
     fetchTasksAndCourses()
   }, [])
@@ -45,7 +44,7 @@ const CreateRoadmapForm = ({ user }) => {
       await axios.post(`${BASE_URL}/roadmap/add`, formData)
       console.log("Roadmap saved")
 
-      // Reset the state using the setter functions
+      
       setName("")
       setDescription("")
       setSelectedTasks([])
@@ -99,7 +98,7 @@ const CreateRoadmapForm = ({ user }) => {
           >
             {tasks.map((task) => (
               <option key={task._id} value={task._id}>
-                {task.name} {/* Assuming tasks have a title field */}
+                {task.name} 
               </option>
             ))}
           </select>
@@ -123,7 +122,7 @@ const CreateRoadmapForm = ({ user }) => {
           >
             {courses.map((course) => (
               <option key={course._id} value={course._id}>
-                {course.title} {/* Assuming courses have a title field */}
+                {course.title} 
               </option>
             ))}
           </select>
