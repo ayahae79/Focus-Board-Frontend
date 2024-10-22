@@ -64,10 +64,12 @@ const Nav = ({ user, handleLogOut }) => {
           </Link>
         </li>
         <li>
-
           <Link to="/roadmap/new" className="nav-link">
-            {" "}
-            <FaPlus /> Add roadmap{" "}
+            {' '}
+            <FaPlus /> Add roadmap{' '}
+          </Link>
+        </li>
+        <li>
           <Link to="/events/add" className="nav-link">
             {' '}
             <FaPlus /> Add Event{' '}
