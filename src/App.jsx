@@ -28,6 +28,7 @@ import CreateRoadmapForm from "./components/newRoadmap"
 import RoadmapList from "./pages/roadmapList"
 // Import the Calendar component
 import Calendar from "./components/Calendar"
+import Dashboard from "./pages/Dashboard"
 
 const App = () => {
   const [user, setUser] = useState({ data: null, role: null })
@@ -79,6 +80,10 @@ const App = () => {
             <Route
               path="/profile/data"
               element={<ProfileDisplay user={user.data} />}
+            />
+             <Route
+              path="/Dashboard"
+              element={<Dashboard user={user.data} />}
             />
             {/* Calendar route */}
             <Route
