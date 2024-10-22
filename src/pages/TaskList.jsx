@@ -11,7 +11,7 @@ const TaskList = ({ user }) => {
 
   useEffect(() => {
     getTasks()
-  }, [])
+  }, [user])
 
   const getTasks = async () => {
     try {
