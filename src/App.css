@@ -70,6 +70,7 @@ button {
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  margin: 5px;
   transition: background-color 0.3s ease;
 }
 
@@ -119,4 +120,19 @@ footer {
   padding: 5px;
   font-size: 12px;
   border-radius: 3px;
+}
+
+.newButton {
+  padding: 10px 30px;
+  max-width: max-content;
+  background-color: #90caf9;
+  color: #003f7f;
+  text-decoration: none;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  transition: background-color 0.3s;
+}
+
+.newButton:hover {
+  background-color: #81d4fa;
 }

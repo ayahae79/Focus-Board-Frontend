@@ -3,10 +3,10 @@ import TaskCard from "../components/TaskCard"
 import axios from "axios"
 import { Link } from "react-router-dom"
 import styles from "../css/task.module.css" // Adjust the path as necessary
-
+import { FaPlus } from "react-icons/fa"
 const BASE_URL = "http://localhost:3000"
 
-const TaskList = () => {
+const TaskList = ({ user }) => {
   const [tasks, setTasks] = useState([])
 
   useEffect(() => {
@@ -15,8 +15,8 @@ const TaskList = () => {
 
   const getTasks = async () => {
     try {
-      const response = await axios.get(`${BASE_URL}/tasks/tasks`)
-      setTasks(response.data)
+      const response = await axios.get(`${BASE_URL}/user/myTasks/${user.id}`)
+      setTasks(response.data.tasks)
     } catch (error) {
       console.error("Failed to fetch tasks:", error)
     }

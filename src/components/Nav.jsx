@@ -1,96 +1,80 @@
-import { Link } from 'react-router-dom'
-import { FaHome, FaPowerOff, FaTasks, FaPlus, FaCalendar } from 'react-icons/fa'
-import { RiLoginBoxLine, RiUserAddLine } from 'react-icons/ri'
+
+import { Link } from "react-router-dom"
+import { FaHome, FaPowerOff, FaTasks, FaPlus, FaBook, FaCalendar } from "react-icons/fa"
+import { RiLoginBoxLine, RiUserAddLine } from "react-icons/ri"
+import { GoProjectRoadmap } from "react-icons/go"
+import { MdEventNote } from "react-icons/md"
+import { CgProfile } from "react-icons/cg"
+
 
 const Nav = ({ user, handleLogOut }) => {
-  const isAdmin = user && user.role === 'admin'
+  const isAdmin = user && user.role === "admin"
+  console.log(isAdmin)
 
   const adminOptions = (
     <nav className="nav">
       <ul className="nav-list">
         <li>
           <Link to="/" className="nav-link">
-            {' '}
-            <FaHome /> Home{' '}
+            {" "}
+            <FaHome /> Home{" "}
           </Link>
         </li>
         <li>
           <Link onClick={handleLogOut} to="/" className="nav-link">
-            {' '}
-            <FaPowerOff /> Sign Out{' '}
+            {" "}
+            <FaPowerOff /> Sign Out{" "}
           </Link>
         </li>
         <li>
-          <Link to="/tasks" className="nav-link">
-            {' '}
-            <FaTasks /> Task List{' '}
+          <Link to="/courses" className="nav-link">
+            <FaBook /> Courses List
           </Link>
         </li>
         <li>
-          <Link to="/tasks/new" className="nav-link">
-            {' '}
-            <FaPlus /> Add Task{' '}
+          <Link to="/courses/createcourse" className="nav-link">
+            <FaPlus /> Add Course
           </Link>
         </li>
       </ul>
     </nav>
   )
-
   const userOptions = (
     <nav className="nav">
       <ul className="nav-list">
         <li>
+          <Link to="/profile/data" className="nav-link">
+            <CgProfile /> profile
+          </Link>
+        </li>
+        <li>
           <Link to="/" className="nav-link">
-            {' '}
-            <FaHome /> Home{' '}
+            <FaHome /> Home
           </Link>
         </li>
         <li>
           <Link onClick={handleLogOut} to="/" className="nav-link">
-            {' '}
-            <FaPowerOff /> Sign Out{' '}
+            <FaPowerOff /> Sign Out
           </Link>
         </li>
         <li>
           <Link to="/tasks" className="nav-link">
-            {' '}
-            <FaTasks /> Task List{' '}
+            <FaTasks /> Task List
           </Link>
         </li>
         <li>
-          <Link to="/tasks/new" className="nav-link">
-            {' '}
-            <FaPlus /> Add Task{' '}
-          </Link>
-        </li>
-        <li>
-          <Link to="/roadmap/new" className="nav-link">
-            {' '}
-            <FaPlus /> Add roadmap{' '}
-          </Link>
-        </li>
-        <li>
-          <Link to="/events/add" className="nav-link">
-            {' '}
-            <FaPlus /> Add Event{' '}
+          <Link to="/roadmap" className="nav-link">
+            <GoProjectRoadmap /> Roadmap List
           </Link>
         </li>
         <li>
           <Link to="/events" className="nav-link">
-            {' '}
-            <FaTasks /> Event List{' '}
+            <MdEventNote /> Event List
           </Link>
         </li>
         <li>
-          <Link to="/courses" className="nav-link">
-            {' '}
-            <FaTasks /> Courses List{' '}
-          </Link>
-        </li>
-        <li>
-          <Link to="/courses/createcourse" className="nav-link">
-            {' '}
-            <FaPlus /> Add Course{' '}
+          <Link to="/mycourses" className="nav-link">
+            <FaBook /> My Courses
           </Link>
         </li>
         <li>
@@ -108,20 +92,20 @@ const Nav = ({ user, handleLogOut }) => {
       <ul className="nav-list">
         <li>
           <Link to="/" className="nav-link">
-            {' '}
-            <FaHome /> Home{' '}
+            {" "}
+            <FaHome /> Home{" "}
           </Link>
         </li>
         <li>
           <Link to="/register" className="nav-link">
-            {' '}
-            <RiUserAddLine /> Register{' '}
+            {" "}
+            <RiUserAddLine /> Register{" "}
           </Link>
         </li>
         <li>
           <Link to="/login" className="nav-link">
-            {' '}
-            <RiLoginBoxLine /> Sign In{' '}
+            {" "}
+            <RiLoginBoxLine /> Sign In{" "}
           </Link>
         </li>
       </ul>

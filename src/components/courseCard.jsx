@@ -1,7 +1,8 @@
 import React from 'react'
 
-const CourseCard = ({ course, onEdit, onDelete }) => {
+const CourseCard = ({ user, course, onEdit, onDelete }) => {
   // Check if lectureSchedule exists and has at least one item
+  const isAdmin = user && user.role === "admin"
   const hasLectureSchedule =
     course.lectureSchedule && course.lectureSchedule.length > 0
 
@@ -25,10 +26,11 @@ const CourseCard = ({ course, onEdit, onDelete }) => {
           </ul>
         </div>
       )}
-
       <div className="course-actions">
-        <button onClick={() => onEdit(course)}>Edit</button>
-        <button onClick={() => onDelete(course._id)}>Delete</button>
+        {isAdmin && <button onClick={() => onEdit(course)}>Edit</button>}
+        {isAdmin && (
+          <button onClick={() => onDelete(course._id)}>Delete</button>
+        )}
       </div>
     </div>
   )

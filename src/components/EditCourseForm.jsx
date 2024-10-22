@@ -1,9 +1,9 @@
 // EditCourseForm.jsx
-import axios from 'axios'
-import React, { useState, useEffect } from 'react'
-import { useNavigate, useLocation } from 'react-router-dom'
+import axios from "axios"
+import React, { useState, useEffect } from "react"
+import { useNavigate, useLocation } from "react-router-dom"
 
-const BASE_URL = 'http://localhost:3000'
+const BASE_URL = "http://localhost:3000"
 
 const EditCourseForm = () => {
   const navigate = useNavigate()
@@ -21,9 +21,9 @@ const EditCourseForm = () => {
     try {
       const formData = { title, description, lecturedate, startTime, endTime }
       await axios.put(`${BASE_URL}/course/courses/${course._id}`, formData)
-      navigate('/courses')
+      navigate("/courses")
     } catch (error) {
-      console.error('Error updating course:', error)
+      console.error("Error updating course:", error)
     }
   }
 
@@ -52,7 +52,7 @@ const EditCourseForm = () => {
           <label>Lecture Date:</label>
           <input
             type="date"
-            value={lecturedate}
+            value={new Date(lecturedate).toISOString().split("T")[0]}
             onChange={(e) => setLecturedate(e.target.value)}
             required
           />

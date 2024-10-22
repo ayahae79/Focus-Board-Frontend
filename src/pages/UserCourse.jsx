@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react"
 import axios from "axios"
 import CourseCard from "../components/courseCard"
 import { useNavigate } from "react-router-dom"
-
 const BASE_URL = "http://localhost:3000"
 
 const CourseList = ({ user }) => {
@@ -11,12 +10,12 @@ const CourseList = ({ user }) => {
 
   useEffect(() => {
     getCourses()
-  }, [])
+  }, [user])
 
   const getCourses = async () => {
     try {
-      const response = await axios.get(`${BASE_URL}/course/courses`)
-      setCourses(response.data)
+      const response = await axios.get(`${BASE_URL}/user/myCourses/${user.id}`)
+      setCourses(response.data.courses)
     } catch (error) {
       console.error("Failed to fetch courses:", error)
     }
