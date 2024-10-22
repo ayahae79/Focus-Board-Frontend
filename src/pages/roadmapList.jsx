@@ -12,7 +12,7 @@ const RoadmapList = ({ user }) => {
 
   useEffect(() => {
     getRoadmaps()
-  }, [])
+  }, [user])
 
   const getRoadmaps = async () => {
     try {

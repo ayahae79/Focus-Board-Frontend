@@ -54,7 +54,7 @@ nav li {
 /* Main Content Styles */
 main {
   margin-left: 250px;
-  padding: 2rem 0 0 2rem;
+  padding: 20px 0 0 20px;
   flex-grow: 1;
   background-color: #ffffff;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);

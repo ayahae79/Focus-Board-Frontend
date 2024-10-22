@@ -9,7 +9,7 @@ const Calendar = ({ user }) => {
 
   useEffect(() => {
     getEvents()
-  }, [])
+  }, [user])
 
   const getEvents = async () => {
     try {
