@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { SignInUser } from '../services/Auth'
+import { FaLocationArrow, FaLocationPin } from 'react-icons/fa6'
+import { FaFax, FaMailBulk, FaPhone } from 'react-icons/fa'
 
 const LoginPage = ({ setUser, fetchUserSession }) => {
   let navigate = useNavigate()
@@ -54,7 +56,27 @@ const LoginPage = ({ setUser, fetchUserSession }) => {
           <p class="title">Contact us</p>
           <div class="card-hidden">
               <p class="title-in">
-             
+              <FaLocationArrow/> Location
+              <br></br>
+Building 1306, Road 4625,
+Manama Sea Front, 346
+Kingdom of Bahrain
+P.O. Box 20525
+<br></br>
+<br></br>
+<FaPhone/> Call
+<br></br>
++973 1781 5555
+<br></br>
+<br></br>
+<FaMailBulk/> Call
+<br></br>
+info@LearnTech.com
+<br></br>
+<br></br>
+<FaFax/> Fax
+<br></br>
++973 1772 9928
              </p>
               
           </div>
