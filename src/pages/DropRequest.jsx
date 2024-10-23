@@ -3,14 +3,16 @@ import axios from "axios"
 import { useParams } from "react-router-dom"
 
 const DropRequest = () => {
-  const { courseId } = useParams()
+  const { id } = useParams()
   const [dropRequests, setDropRequests] = useState([])
 
   useEffect(() => {
     const fetchDropRequests = async () => {
+      console.log("id")
+      console.log(id)
       try {
         const response = await axios.get(
-          `http://localhost:3000/course/${courseId}/drop-requests`
+          `http://localhost:3000/course/${id}/drop-requests`
         )
         setDropRequests(response.data)
       } catch (error) {
@@ -19,12 +21,10 @@ const DropRequest = () => {
     }
 
     fetchDropRequests()
-  }, [courseId])
+  }, [id])
   const handleApprove = async (requestId) => {
     try {
-      await axios.put(
-        `http://localhost:3000/course/${courseId}/${requestId}/approve`
-      )
+      await axios.put(`http://localhost:3000/course/${id}/${requestId}/approve`)
       setDropRequests((prevRequests) =>
         prevRequests.filter((request) => request._id !== requestId)
       )
@@ -35,9 +35,7 @@ const DropRequest = () => {
 
   const handleReject = async (requestId) => {
     try {
-      await axios.put(
-        `http://localhost:3000/course/${courseId}/${requestId}/reject`
-      )
+      await axios.put(`http://localhost:3000/course/${id}/${requestId}/reject`)
       setDropRequests((prevRequests) =>
         prevRequests.filter((request) => request._id !== requestId)
       )
