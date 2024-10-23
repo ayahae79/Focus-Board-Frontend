@@ -76,7 +76,8 @@
   text-transform: uppercase;
   color: #121212;
   z-index: 1;
-  margin: 0px;
+  margin-right: 100px;
+  margin-right: 00vw;
   text-decoration: none;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
@@ -90,6 +91,7 @@
   transform: translate(-50%, -50%);
   position: absolute;
   border-radius: 50%;
+  
   z-index: -1;
   background-color: var(--color);
   transition: 0.7s ease-in-out;
@@ -125,6 +127,7 @@
   filter: brightness(0.85);
   box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
   background: linear-gradient(135deg, #2e42ff, #5c6bff);
+  
 }
 
 .button:focus {
@@ -268,7 +271,7 @@ main {
 }
 
 /* Button Styles */
-button {
+/* button {
   background-color: #64b5f6;
   color: white;
   padding: 0.5rem 1rem;
@@ -281,7 +284,7 @@ button {
 
 button:hover {
   background-color: #42a5f5;
-}
+} */
 
 footer {
   color: #011b36;
@@ -368,7 +371,7 @@ footer {
 }
 
 /*Button*/
-.buttons {
+/* .buttons {
   display: inline-flex;
   justify-content: center;
   padding: 8px;
@@ -381,7 +384,7 @@ footer {
 
 .buttons:hover {
   background-color: #53aed4;
-}
+} */
 /* From Uiverse.io by vinodjangid07 */ 
 .cardo {
   width: 180px;

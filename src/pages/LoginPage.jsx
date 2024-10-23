@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { SignInUser } from '../services/Auth'
 import { FaLocationArrow, FaLocationPin } from 'react-icons/fa6'
 import { FaFax, FaMailBulk, FaPhone } from 'react-icons/fa'
+import { Link } from 'react-router-dom'
 
 const LoginPage = ({ setUser, fetchUserSession }) => {
   let navigate = useNavigate()
@@ -22,7 +23,7 @@ const LoginPage = ({ setUser, fetchUserSession }) => {
       setUser(payload)
       localStorage.setItem('user', JSON.stringify(payload))
       fetchUserSession()
-      navigate('/')
+      navigate('/Dashboard')
     } catch (error) {
       setErrorMessage('Invalid email or password. Please try again.')
     }
@@ -112,6 +113,7 @@ info@LearnTech.com
             />
           </div>
           {errorMessage && <p className="error-message">{errorMessage}</p>}
+          
           <button type="submit">Login</button>
           </div>
         </form>
