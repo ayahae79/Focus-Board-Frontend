@@ -75,80 +75,87 @@ const StudentProfile = ({ user }) => {
   }
 
   return (
-    <div className="container">
+    <div className="profile-container">
       <h1>Update Profile</h1>
-      {error && <div className="error">{error}</div>}
-      <form onSubmit={handleSubmit}>
-        <label>Full Name:</label>
+      {error && <div className="profile-error">{error}</div>}
+      <form className="profile-form" onSubmit={handleSubmit}>
+        <label className="profile-label">Full Name:</label>
         <input
+          className="profile-input"
           type="text"
           name="full_name"
           value={formData.full_name}
           onChange={handleChange}
           required
         />
-
-        <label>Date of Birth:</label>
+  
+        <label className="profile-label">Date of Birth:</label>
         <input
+          className="profile-input"
           type="date"
           name="date_of_birth"
           value={formData.date_of_birth}
           onChange={handleChange}
         />
-
-        <label>Phone Number:</label>
+  
+        <label className="profile-label">Phone Number:</label>
         <input
+          className="profile-input"
           type="text"
           name="phone_number"
           value={formData.phone_number}
           onChange={handleChange}
         />
-
-        <label>Student ID:</label>
+  
+        <label className="profile-label">Student ID:</label>
         <input
+          className="profile-input"
           type="text"
           name="student_id"
           value={formData.student_id}
           onChange={handleChange}
         />
-
-        <label>Major:</label>
+  
+        <label className="profile-label">Major:</label>
         <input
+          className="profile-input"
           type="text"
           name="major"
           value={formData.major}
           onChange={handleChange}
         />
-
-        <label>Year of Study:</label>
+  
+        <label className="profile-label">Year of Study:</label>
         <input
+          className="profile-input"
           type="text"
           name="year_of_study"
           value={formData.year_of_study}
           onChange={handleChange}
         />
-
-        <label>GPA:</label>
+  
+        <label className="profile-label">GPA:</label>
         <input
+          className="profile-input"
           type="number"
           step="0.1"
           name="gpa"
           value={formData.gpa}
           onChange={handleChange}
         />
-
-        <label>Academic Advisor:</label>
+  
+        <label className="profile-label">Academic Advisor:</label>
         <input
+          className="profile-input"
           type="text"
           name="academic_advisor"
           value={formData.academic_advisor}
           onChange={handleChange}
         />
-
-        <button type="submit">Update Profile</button>
+  
+        <button className="profile-button" type="submit">Update Profile</button>
       </form>
     </div>
-  )
-}
+  );}
 
 export default StudentProfile
