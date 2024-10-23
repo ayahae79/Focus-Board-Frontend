@@ -1,5 +1,13 @@
 import { Link } from "react-router-dom"
-import { FaHome, FaPowerOff, FaTasks, FaPlus, FaBook, FaCalendar, FaDesktop } from "react-icons/fa"
+import {
+  FaHome,
+  FaPowerOff,
+  FaTasks,
+  FaPlus,
+  FaBook,
+  FaCalendar,
+  FaDesktop,
+} from "react-icons/fa"
 import { RiLoginBoxLine, RiUserAddLine } from "react-icons/ri"
 import { GoProjectRoadmap } from "react-icons/go"
 import { MdEventNote } from "react-icons/md"
@@ -13,12 +21,6 @@ const Nav = ({ user, handleLogOut }) => {
   const adminOptions = (
     <nav className="nav">
       <ul className="nav-list">
-        <li>
-          <Link to="/" className="nav-link">
-            {" "}
-            <FaHome /> Home{" "}
-          </Link>
-        </li>
         <li>
           <Link onClick={handleLogOut} to="/" className="nav-link">
             {" "}
@@ -49,11 +51,6 @@ const Nav = ({ user, handleLogOut }) => {
         <li>
           <Link to="/profile/data" className="nav-link">
             <CgProfile /> profile
-          </Link>
-        </li>
-        <li>
-          <Link to="/" className="nav-link">
-            <FaHome /> Home
           </Link>
         </li>
         <li>
@@ -105,12 +102,6 @@ const Nav = ({ user, handleLogOut }) => {
     <nav className="nav">
       <ul className="nav-list">
         <li>
-          <Link to="/" className="nav-link">
-            {" "}
-            <FaHome /> Home{" "}
-          </Link>
-        </li>
-        <li>
           <Link to="/register" className="nav-link">
             {" "}
             <RiUserAddLine /> Register{" "}
@@ -122,7 +113,6 @@ const Nav = ({ user, handleLogOut }) => {
             <RiLoginBoxLine /> Sign In{" "}
           </Link>
         </li>
-        
       </ul>
     </nav>
   )
