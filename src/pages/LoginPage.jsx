@@ -91,8 +91,9 @@ const LoginPage = ({ setUser, fetchUserSession }) => {
           </div>
           {errorMessage && <p className="error-message">{errorMessage}</p>}
           <button type="submit">Login</button>
-     </div>
+          </div>
         </form>
+    
       </div>
     </div>
   )
