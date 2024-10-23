@@ -124,6 +124,7 @@ const EditCourseForm = () => {
           ))}
         </div>
 
+        {/* Updated students enrollment section */}
         <div>
           <label>Students Enrolled:</label>
           <select
