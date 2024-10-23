@@ -1,68 +1,61 @@
-import axios from "axios";
-import React, { useState, useEffect } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import axios from "axios"
+import React, { useState, useEffect } from "react"
+import { useNavigate } from "react-router-dom"
 
-const BASE_URL = "http://localhost:3000";
+const BASE_URL = "http://localhost:3000"
 
-const EditCourseForm = () => {
-  const navigate = useNavigate();
-  const location = useLocation();
-  const { course } = location.state;
+const CreateCourseForm = () => {
+  const navigate = useNavigate()
+  const [title, setTitle] = useState("")
+  const [description, setDescription] = useState("")
+  const [startTime, setStartTime] = useState("")
+  const [endTime, setEndTime] = useState("")
+  const [studentsEnrolled, setStudentsEnrolled] = useState([])
+  const [availableStudents, setAvailableStudents] = useState([])
+  const [selectedDays, setSelectedDays] = useState([])
 
-  // Initialize state with course data
-  const [title, setTitle] = useState(course.title);
-  const [description, setDescription] = useState(course.description);
-  const [startTime, setStartTime] = useState(course.startTime);
-  const [endTime, setEndTime] = useState(course.endTime);
-  const [selectedDays, setSelectedDays] = useState(course.lectureDays || []);
-  const [studentsEnrolled, setStudentsEnrolled] = useState(course.studentsEnrolled || []); // Initialize with current enrolled students
-
-  const [availableStudents, setAvailableStudents] = useState([]); // State to store all available students
-
-  // Fetch all students on component mount
   useEffect(() => {
     const fetchStudents = async () => {
       try {
-        const response = await axios.get(`${BASE_URL}/user/users`);
-        setAvailableStudents(response.data);
+        const response = await axios.get(`${BASE_URL}/user/users`)
+        setAvailableStudents(response.data)
       } catch (error) {
-        console.error("Error fetching students:", error);
+        console.error("Error fetching students:", error)
       }
-    };
-
-    fetchStudents();
-  }, []);
+    }
+    fetchStudents()
+  }, [])
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    e.preventDefault()
     try {
       const formData = {
         title,
         description,
-        lectureDays: selectedDays,
+        lectureDays: selectedDays, // Include selected weekdays
         startTime,
         endTime,
-        studentsEnrolled, // Use the current students enrolled
-      };
-      await axios.put(`${BASE_URL}/course/courses/${course._id}`, formData);
-      navigate("/courses");
+        studentsEnrolled,
+      }
+      await axios.post(`${BASE_URL}/course/courses`, formData)
+      navigate("/courses")
     } catch (error) {
-      console.error("Error updating course:", error);
+      console.error("Error creating course:", error)
     }
-  };
+  }
 
   const handleDaySelection = (e) => {
-    const value = e.target.value;
+    const value = e.target.value
     setSelectedDays((prev) =>
       prev.includes(value)
         ? prev.filter((day) => day !== value)
         : [...prev, value]
-    );
-  };
+    )
+  }
 
   return (
     <div>
-      <h1>Edit Course</h1>
+      <h1>Create Course</h1>
       <form onSubmit={handleSubmit}>
         <div>
           <label>Title:</label>
@@ -101,7 +94,15 @@ const EditCourseForm = () => {
         </div>
         <div>
           <label>Select Lecture Days:</label>
-          {["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"].map((day) => (
+          {[
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday",
+            "Sunday",
+          ].map((day) => (
             <div key={day}>
               <input
                 type="checkbox"
@@ -113,8 +114,6 @@ const EditCourseForm = () => {
             </div>
           ))}
         </div>
-
-        {/* Updated students enrollment section */}
         <div>
           <label>Students Enrolled:</label>
           <select
@@ -133,11 +132,10 @@ const EditCourseForm = () => {
             ))}
           </select>
         </div>
-
-        <button type="submit">Update Course</button>
+        <button type="submit">Create Course</button>
       </form>
     </div>
-  );
-};
+  )
+}
 
-export default EditCourseForm;
+export default CreateCourseForm
