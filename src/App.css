@@ -239,11 +239,21 @@ footer {
   align-items: center; /* Centers content vertically */
 }
 
+.calendar-container {
+  display: flex;
+  justify-content: center; /* Centers the calendar */
+  padding: 20px;
+}
+
 .calendar {
   padding: 20px;
-  max-width: 800px;
+  width: 100%; /* Use full width of the container */
+  max-width: 1000px; /* Increase maximum width as needed */
   margin: auto;
-  margin: 0 10px 10px 0;
+  background-color: white; /* Set background color to white */
+  border: 1px solid #ccc; /* Optional: border around the calendar */
+  border-radius: 8px; /* Rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: shadow for depth */
 }
 
 .calendar-grid {
@@ -252,23 +262,25 @@ footer {
   gap: 10px;
 }
 
-.calendar-week {
-  display: contents; /* Use for grid layout */
-}
-
 .calendar-day {
   border: 1px solid #ccc;
   min-height: 100px; /* Adjust height as needed */
   position: relative;
+  padding: 10px; /* Padding inside each day cell */
 }
 
 .event {
-  background-color: #90caf9;
-  margin-top: 15px;
-  padding: 5px;
-  font-size: 12px;
-  position: relative;
+  background-color: #e7f3fe; /* Light blue for course items */
+  border: 1px solid #2196F3; /* Blue border for course items */
+  padding: 8px;
+  text-align: center; 
+  margin-bottom: px;
+  position: relative;  /* Position relative to the parent */
+  top: 20%;   
+  border-radius: 5px; /* Rounded corners */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Slight shadow */
 }
+
 .calendar-header {
   display: flex;
   justify-content: space-between;
@@ -295,10 +307,6 @@ footer {
   background-color: #b8d3e9;
 }
 
-.month-button:active {
-  transform: scale(0.95);
-}
-
 .month-title {
   font-size: 24px;
   color: #333;
@@ -306,32 +314,15 @@ footer {
   transition: opacity 0.5s ease;
 }
 
-/* Transition effect for changing months */
-.calendar-header {
-  transition: all 0.5s ease;
-}
-
-.newButton {
-  padding: 10px 30px;
-  max-width: max-content;
-  background-color: #90caf9;
-  color: #003f7f;
-  text-decoration: none;
-  border-radius: 5px;
-  margin-bottom: 20px;
-  transition: background-color 0.3s;
-}
-
-.newButton:hover {
-  background-color: #81d4fa;
-}
-
-
 .schedule {
   display: grid;
   grid-template-columns: 100px repeat(7, 1fr); /* 1 column for time, 7 for days */
   gap: 10px;
   margin-top: 20px;
+  background-color: white; /* White background for the schedule container */
+  border: 1px solid #ccc; /* Border around the schedule */
+  border-radius: 8px; /* Rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow for depth */
 }
 
 .header {
@@ -340,8 +331,8 @@ footer {
 
 .time-header, .day-header {
   font-weight: bold;
-  background-color: #4CAF50; /* Green background for header */
-  color: white;
+  background-color: #90caf9; /* Match calendar header color */
+  color: #003f7f; /* Dark blue for text */
   padding: 10px;
   text-align: center;
 }
@@ -360,7 +351,8 @@ footer {
   border: 1px solid #ccc; /* Light grey border for cells */
   min-height: 60px; /* Set a minimum height for each cell */
   padding: 10px;
-  text-align: left; /* Align text to the left */
+  text-align: center; /* Center text in the cell */
+  position: relative; /* For positioning items */
 }
 
 .course-item {
@@ -369,9 +361,226 @@ footer {
   padding: 5px;
   margin-bottom: 5px;
   border-radius: 5px; /* Rounded corners */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Slight shadow */
 }
 
 .cell span {
   font-style: italic; /* Italics for "No class" */
   color: #888; /* Grey color for "No class" text */
+}
+
+h1 {
+  text-align: center; /* Center the title */
+  margin-bottom: 20px; /* Space below the title */
+}
+
+
+.course-card {
+  background-color: #ffffff; /* White background */
+  border: 1px solid #e0e0e0; /* Light gray border */
+  border-radius: 10px; /* Rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  padding: 20px; /* Spacing inside the card */
+  margin: 15px; /* Spacing around the card */
+  transition: transform 0.2s; /* Smooth hover effect */
+}
+
+.course-card:hover {
+  transform: scale(1.02); /* Slightly enlarge on hover */
+}
+
+.course-title {
+  font-size: 1.5em; /* Larger font size for title */
+  color: #2196F3; /* Blue color */
+  margin-bottom: 10px; /* Spacing below the title */
+}
+
+.course-description {
+  font-size: 1em; /* Standard font size */
+  color: #333; /* Dark gray text */
+  margin-bottom: 15px; /* Spacing below the description */
+}
+
+.course-start-time,
+.course-end-time {
+  font-size: 0.9em; /* Slightly smaller font for times */
+  color: #555; /* Medium gray text */
+  margin-bottom: 5px; /* Spacing below time paragraphs */
+}
+
+.lecture-schedule {
+  margin-top: 15px; /* Spacing above lecture days */
+}
+
+.lecture-schedule h3 {
+  font-size: 1.2em; /* Medium font size for subheading */
+  color: #333; /* Dark gray text */
+  margin-bottom: 10px; /* Spacing below the subheading */
+}
+
+.lecture-schedule ul {
+  list-style-type: none; /* Remove bullets */
+  padding: 0; /* Remove padding */
+}
+
+.lecture-schedule li {
+  background-color: #f1f1f1; /* Light background for list items */
+  border-radius: 5px; /* Rounded corners for list items */
+  padding: 8px; /* Padding inside list items */
+  margin-bottom: 5px; /* Spacing between list items */
+}
+
+.course-actions {
+  margin-top: 15px; /* Spacing above actions */
+}
+
+.course-actions button {
+  background-color: #2196F3; /* Blue background for buttons */
+  color: #ffffff; /* White text */
+  border: none; /* Remove default border */
+  border-radius: 5px; /* Rounded corners */
+  padding: 10px 15px; /* Padding inside buttons */
+  cursor: pointer; /* Pointer cursor on hover */
+  margin-right: 10px; /* Spacing between buttons */
+  transition: background-color 0.2s; /* Smooth background color transition */
+}
+
+.course-actions button:hover {
+  background-color: #1976D2; /* Darker blue on hover */
+}
+
+
+.roadmap-card {
+  background-color: #ffffff; /* White background for the card */
+  border: 1px solid #e0e0e0; /* Light gray border */
+  border-radius: 10px; /* Rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  padding: 20px; /* Padding inside the card */
+  margin: 15px; /* Margin around the card */
+}
+
+.roadmap-title {
+  font-size: 1.8em; /* Larger font size for title */
+  color: #2196F3; /* Blue color for title */
+  margin-bottom: 10px; /* Spacing below title */
+}
+
+.roadmap-description {
+  font-size: 1em; /* Standard font size */
+  color: #333; /* Dark gray text */
+  margin-bottom: 15px; /* Spacing below description */
+}
+
+.roadmap-courses,
+.roadmap-tasks {
+  font-size: 1em; /* Standard font size */
+  color: #555; /* Medium gray text */
+  margin-bottom: 10px; /* Spacing below each line */
+}
+
+.roadmap-actions {
+  margin-top: 15px; /* Spacing above actions */
+}
+
+.roadmap-actions button {
+  background-color: #fa0404; /* Red color for delete button */
+  color: white; /* White text */
+  border: none; /* Remove default border */
+  border-radius: 5px; /* Rounded corners */
+  padding: 10px 15px; /* Padding inside button */
+  cursor: pointer; /* Pointer cursor on hover */
+  transition: background-color 0.2s; /* Smooth background color transition */
+}
+
+.roadmap-actions button:hover {
+  background-color: #e64a19; /* Darker red on hover */
+}
+
+/* Task Card Styles */
+.taskcard {
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  padding: 20px;
+  margin: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s;
+}
+
+.taskcard:hover {
+  transform: scale(1.02);
+}
+
+.task-title {
+  font-size: 1.5em;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+/* Progress Bar Container */
+.progress-bar-container {
+  background-color: #f0f0f0;
+  border-radius: 5px;
+  margin: 10px 0;
+  padding: 3px;
+}
+
+/* Progress Bar */
+.progress-bar {
+  height: 20px;
+  border-radius: 5px;
+  color: white;
+  text-align: center;
+  line-height: 20px;
+  font-weight: bold;
+  transition: width 0.3s ease;
+}
+
+/* View Details Button */
+.view-details-button {
+  background-color: #2196f3;
+  color: white;
+  padding: 10px 15px;
+  border-radius: 5px;
+  text-decoration: none;
+  text-align: center;
+  display: inline-block;
+  margin-top: 10px;
+}
+
+.view-details-button:hover {
+  background-color: #1976d2;
+}
+
+/* Status Pill */
+.status-pill {
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 0.9em;
+  color: white;
+  margin-top: 10px;
+}
+
+.status-pill.completed {
+  background-color: #4caf50;
+}
+
+.status-pill.in-progress {
+  background-color: #ff9800;
+}
+
+.status-pill.pending {
+  background-color: #f44336;
+}
+
+/* Priority Badge */
+.priority-badge {
+  background-color: #ff5722;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 0.9em;
+  margin-top: 10px;
+  display: inline-block;
 }
