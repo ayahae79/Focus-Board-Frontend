@@ -46,13 +46,21 @@ const CourseCard = ({ user, course, onEdit, onDelete }) => {
     <div className="course-card">
       <h2 className="course-title">{course.title}</h2>
       <p className="course-description">{course.description}</p>
-      <p className="course-lecture-date">Lecture Date: {course.lecturedate}</p>
       <p className="course-start-time">Start Time: {course.startTime}</p>
       <p className="course-end-time">End Time: {course.endTime}</p>
       {!isAdmin && (
         <p className="course-end-time">
           Statuse : {requestStatus ? requestStatus : "Enrolled"}
         </p>
+      {course.lectureDays && course.lectureDays.length > 0 && (
+        <div className="lecture-schedule">
+          <h3>Lecture Days:</h3>
+          <ul>
+            {course.lectureDays.map((day, index) => (
+              <li key={index}>{day}</li>
+            ))}
+          </ul>
+        </div>
       )}
 
       <div className="course-actions">

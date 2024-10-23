@@ -1,31 +1,26 @@
-import axios from "axios"
-import React, { useState, useEffect } from "react"
-import { useNavigate } from "react-router-dom"
+import axios from 'axios'
+import React, { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 
-const BASE_URL = "http://localhost:3000"
+const BASE_URL = 'http://localhost:3000'
 
 const CreateCourseForm = () => {
-  let navigate = useNavigate()
+  const navigate = useNavigate()
+  const [title, setTitle] = useState('')
+  const [description, setDescription] = useState('')
+  const [startTime, setStartTime] = useState('')
+  const [endTime, setEndTime] = useState('')
+  const [studentsEnrolled, setStudentsEnrolled] = useState([])
+  const [availableStudents, setAvailableStudents] = useState([])
+  const [selectedDays, setSelectedDays] = useState([])
 
-  // Form fields
-  const [title, setTitle] = useState("")
-  const [description, setDescription] = useState("")
-  const [lecturedate, setLecturedate] = useState("")
-  const [startTime, setStartTime] = useState("")
-  const [endTime, setEndTime] = useState("")
-
-  // Student selection
-  const [studentsEnrolled, setStudentsEnrolled] = useState([]) // Selected students
-  const [availableStudents, setAvailableStudents] = useState([]) // Students list from the backend
-
-  // Fetch the list of students from the backend on component mount
   useEffect(() => {
     const fetchStudents = async () => {
       try {
         const response = await axios.get(`${BASE_URL}/user/users`)
-        setAvailableStudents(response.data) // Assuming the data is an array of user objects
+        setAvailableStudents(response.data)
       } catch (error) {
-        console.error("Error fetching students:", error)
+        console.error('Error fetching students:', error)
       }
     }
     fetchStudents()
@@ -37,25 +32,25 @@ const CreateCourseForm = () => {
       const formData = {
         title,
         description,
-        lecturedate,
+        lectureDays: selectedDays, // Include selected weekdays
         startTime,
         endTime,
-        studentsEnrolled, // Selected students (IDs)
+        studentsEnrolled
       }
       await axios.post(`${BASE_URL}/course/courses`, formData)
-      navigate("/courses")
+      navigate('/courses')
     } catch (error) {
-      console.error("Error creating course:", error)
+      console.error('Error creating course:', error)
     }
   }
 
-  // Handle change in multi-select dropdown
-  const handleStudentSelection = (e) => {
-    const selectedOptions = Array.from(
-      e.target.selectedOptions,
-      (option) => option.value
+  const handleDaySelection = (e) => {
+    const value = e.target.value
+    setSelectedDays((prev) =>
+      prev.includes(value)
+        ? prev.filter((day) => day !== value)
+        : [...prev, value]
     )
-    setStudentsEnrolled(selectedOptions) // Array of selected student IDs
   }
 
   return (
@@ -80,15 +75,6 @@ const CreateCourseForm = () => {
           />
         </div>
         <div>
-          <label>Lecture Date:</label>
-          <input
-            type="date"
-            value={lecturedate}
-            onChange={(e) => setLecturedate(e.target.value)}
-            required
-          />
-        </div>
-        <div>
           <label>Start Time:</label>
           <input
             type="time"
@@ -107,11 +93,37 @@ const CreateCourseForm = () => {
           />
         </div>
         <div>
+          <label>Select Lecture Days:</label>
+          {[
+            'Monday',
+            'Tuesday',
+            'Wednesday',
+            'Thursday',
+            'Friday',
+            'Saturday',
+            'Sunday'
+          ].map((day) => (
+            <div key={day}>
+              <input
+                type="checkbox"
+                value={day}
+                checked={selectedDays.includes(day)}
+                onChange={handleDaySelection}
+              />
+              <label>{day}</label>
+            </div>
+          ))}
+        </div>
+        <div>
           <label>Students Enrolled:</label>
           <select
             multiple
             value={studentsEnrolled}
-            onChange={handleStudentSelection}
+            onChange={(e) =>
+              setStudentsEnrolled(
+                [...e.target.selectedOptions].map((option) => option.value)
+              )
+            }
           >
             {availableStudents.map((student) => (
               <option key={student._id} value={student._id}>

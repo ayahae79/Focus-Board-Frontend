@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react"
 import axios from "axios"
 import { useNavigate } from "react-router-dom"
+import user from "../images/user.jpg"
 
 const BASE_URL = "http://localhost:3000"
 
@@ -36,19 +37,22 @@ const ProfileDisplay = ({ user }) => {
   if (!userData) {
     return <div>No user data available.</div>
   }
-
   return (
-    <div className="container">
-      <h1>Profile Details</h1>
-      <div className="profile-card">
+    <div className="containerprofile">
+      <div className="title-box">
+        <h1>Profile Details</h1>
+      </div>
+
+      <div className="profile-header">
+        <img src={ user } alt="User  Profile" className="profile-picture" />
         <div className="profile-info">
-          <strong>Full Name:</strong> <span>{userData.full_name}</span>
+          <h3>{userData.full_name}</h3>
+          <p>{userData.email}</p>
         </div>
+      </div>
+      <div className="profile-details">
         <div className="profile-info">
           <strong>Username:</strong> <span>{userData.username}</span>
-        </div>
-        <div className="profile-info">
-          <strong>Email:</strong> <span>{userData.email}</span>
         </div>
         <div className="profile-info">
           <strong>Date of Birth:</strong>{" "}
@@ -73,15 +77,13 @@ const ProfileDisplay = ({ user }) => {
           <strong>Academic Advisor:</strong>{" "}
           <span>{userData.academic_advisor}</span>
         </div>
-        <button
-          onClick={() => navigate("/profile")}
-          className="update-profile-button"
-        >
-          Update Profile
-        </button>
+        <div className="update">
+          <button onClick={() => navigate("/profile")} className="button">
+            Update Profile
+          </button>
+        </div>{" "}
       </div>
     </div>
   )
 }
-
 export default ProfileDisplay

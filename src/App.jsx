@@ -28,8 +28,11 @@ import CreateRoadmapForm from "./components/newRoadmap"
 import RoadmapList from "./pages/roadmapList"
 // Drop Requests import
 import DropRequest from "./pages/DropRequest"
-// Import the Calendar component
-import Calendar from "./components/Calendar"
+// Schedule import
+import Schedule from './pages/Schedule'
+import Calendar from './components/Calendar'
+import Dashboard from './pages/Dashboard'
+
 
 const App = () => {
   const [user, setUser] = useState({ data: null, role: null })
@@ -82,8 +85,11 @@ const App = () => {
               path="/profile/data"
               element={<ProfileDisplay user={user.data} />}
             />
+            <Route path="/Dashboard" element={<Dashboard user={user.data} />} />
             {/* Calendar route */}
             <Route path="/calendar" element={<Calendar user={user.data} />} />
+            {/* Schedule route */}
+            <Route path="/schedule" element={<Schedule user={user.data} />} />
             {/* Task routes */}
             <Route path="/tasks" element={<TaskList user={user.data} />} />
             <Route path="/tasks/new" element={<NewTask user={user.data} />} />
@@ -113,7 +119,6 @@ const App = () => {
             {/* Drop Requests route */}
 
             <Route path="/:id/DropRequest" element={<DropRequest />} />
-
             {/* Roadmap routes */}
             <Route path="/roadmap" element={<RoadmapList user={user.data} />} />
             <Route
