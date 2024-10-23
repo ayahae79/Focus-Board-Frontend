@@ -33,6 +33,40 @@ const LoginPage = ({ setUser, fetchUserSession }) => {
           <h1 className="register-title">
             Welcome Back to LearnTech University!
           </h1>
+          <div className='whyus'>
+          <div class="containers">
+      <div class="card">
+          <p class="title">About us</p>
+          <div class="card-hidden">
+              <p class="title-in">At Learn Tech University, we are dedicated to providing a comprehensive and inclusive educational experience that empowers students to reach their full potential. Our university is committed to fostering a community of learners who are passionate about technology and innovation. .</p>
+              
+          </div>
+
+      </div>
+      <div class="card">
+  <p class="title">Our mission</p>
+  <div class="card-hidden">
+    <p class="title-in">Our mission is to empower students to become innovative leaders in the ever-evolving landscape of technology. We strive to provide a transformative educational experience that fosters intellectual curiosity, creativity, and critical thinking.</p>
+  </div>
+
+      </div>
+      <div class="card">
+          <p class="title">Contact us</p>
+          <div class="card-hidden">
+              <p class="title-in">
+             
+             </p>
+              
+          </div>
+</div>
+
+      </div>
+      </div>
+      
+      <div class="card-border"></div>
+ 
+
+<div class="Login-box"> 
           <div className="input-wrapper">
             <label htmlFor="email">Email</label>
             <input
@@ -57,6 +91,7 @@ const LoginPage = ({ setUser, fetchUserSession }) => {
           </div>
           {errorMessage && <p className="error-message">{errorMessage}</p>}
           <button type="submit">Login</button>
+     </div>
         </form>
       </div>
     </div>
