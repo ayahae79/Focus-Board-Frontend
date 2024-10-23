@@ -1,94 +1,157 @@
 /* profile style */
 .containerprofile {
-  max-width: 700px;
+  /* max-width: 700px; */
+  width: 700px;
+  height: 700px;
   margin: 40px auto;
   padding: 20px;
   border: 1px solid #ccc;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background-color: rgba(255, 255, 255, 0.7);
+  display: block;
+}
+.info-box {
+  width: 100px;
+  height: 100px;
+  border: 1px solid;
+}
+.empty-field {
+  background-color: #ffcccc; /* Light red background */
+  border: 1px solid #ff0000; /* Red border */
+}
+.title-box {
+  background-color: #4cc1f8; /* Title box background color */
+  color: white; /* Title text color */
+  padding: 10px;
+  border-radius: 5px;
   text-align: center;
-  background-color: rgba(255, 255, 255, 0.7); /* 70% transparent white background */
+  margin-bottom: 20px;
+}
+
+.profile-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
 }
 
 .profile-picture {
   width: 80px;
   height: 80px;
   border-radius: 50%;
-  margin-left: 600px;
-  margin-top:-50px ;
-  display: flex;
+  margin-right: 20px; /* Space between image and text */
 }
 
 .profile-info {
-  margin-bottom: 20px;
-  text-align: center;
-}
-
-.profile-info label {
-  font-weight: bolder;
-  margin-bottom: 10px;
-  font-size: xx-large;
-  display: inline-block;
-  width: 100px;
+  flex-grow: 1; /* Allow this section to take remaining space */
 }
 
 .profile-info h3 {
-  display: inline-block;
-  margin-left: 10px;
+  margin: 0; /* Remove default margin */
 }
 
-.profile-box {
-  margin-bottom: 20px;
-  text-align: center;
-  font-size: medium;
+.profile-details {
+  margin-top: 20px; /* Space above the details section */
 }
 
-.profile-box label {
-  font-weight: bold;
-  display: inline-block;
-  width: 150px;
+.profile-details div {
+  margin-bottom: 10px; /* Space between each detail */
 }
-
-.profile-box h3 {
-  display: inline-block;
-  margin-left: 10px;
-  font-size: medium;
-}
-
-.update-profile-button {
-  font-size: large;
-  width: 200px;
-  height: 40px;
-  padding: 10px;
-  border: none;
-  border-radius: 5px;
-  background-color: #f52d2d; /* Red background */
-  color: #fff;
+/* From Uiverse.io by dhanushrs1 */
+.button {
+  --color: #2e42ff;
+  padding: 0.8em 2em;
+  background-color: transparent;
+  border-radius: 0.6em;
+  position: relative;
+  align-items: center;
+  align-self: center;
+  overflow: hidden;
   cursor: pointer;
-  display: block;
-  margin: 20px auto;
-  transition: background-color 0.3s;
+  transition: all 0.3s ease-in-out;
+  font-weight: 700;
+  font-size: 17px;
+  border: 2px solid var(--color);
+  font-family: inherit;
+  text-transform: uppercase;
+  color: #121212;
+  z-index: 1;
+  margin: 0px;
+  text-decoration: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-.update-profile-button:hover {
-  background-color: #d42626; /* Darker red on hover */
-}
-
-/* .avatar {
-  padding: 10px;
+.button::before,
+.button::after {
+  content: "";
+  /* display: block; */
+  width: 50px;
+  height: 50px;
+  transform: translate(-50%, -50%);
+  position: absolute;
   border-radius: 50%;
-  display: inline-flex;
+  z-index: -1;
+  background-color: var(--color);
+  transition: 0.7s ease-in-out;
+}
+
+.button::before {
+  top: -1em;
+  left: -1em;
+}
+
+.button::after {
+  left: calc(100% + 1em);
+  top: calc(100% + 1em);
+}
+
+.button:hover::before,
+.button:hover::after {
+  height: 410px;
+  width: 410px;
+}
+
+.button:hover {
+  background: linear-gradient(135deg, #2e42ff, #6a75ff);
+  color: #0e0e0e;
+  border-color: #6a75ff;
+  box-shadow: 0 6px 15px rgba(46, 66, 255, 0.4),
+    0 8px 24px rgba(46, 66, 255, 0.2);
+  transform: translateY(-3px);
+}
+
+.button:active {
+  transform: scale(0.97);
+  filter: brightness(0.85);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+  background: linear-gradient(135deg, #2e42ff, #5c6bff);
+}
+
+.button:focus {
+  outline: none;
+  border-color: #7289da;
+  box-shadow: 0 0 0 4px rgba(46, 66, 255, 0.3);
+}
+.update {
+  display: flex;
   justify-content: center;
   align-items: center;
-  cursor: pointer;
-} */
+  height: 100vh;
+  width: 100vw;
+}
 
+.update .button {
+  /* margin: 0 auto; */
+  margin-bottom: 800px;
+  margin-right: 600px;
+}
 
 /* Global Styles */
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background: linear-gradient(to right, #e0f7fa, #b2ebf2);
+  /* background: linear-gradient(to right, #e0f7fa, #000000); */
+  background-image: url("https://wallpapercave.com/wp/wp2468660.jpg");
   color: #333;
 }
 
@@ -142,7 +205,7 @@ main {
   margin-left: 250px;
   padding: 20px 0 0 20px;
   flex-grow: 1;
-  background-color: #ffffff;
+  background-color: #f5f2f289;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
   overflow-y: auto; /* Scroll if content overflows */
@@ -165,7 +228,7 @@ button:hover {
 }
 
 footer {
-  color: #003f7f;
+  color: #011b36;
   text-align: center;
   padding: 1rem;
   position: fixed;
