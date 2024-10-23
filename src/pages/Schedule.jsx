@@ -1,7 +1,6 @@
 import axios from 'axios'
 import React, { useState, useEffect } from 'react'
 
-
 const BASE_URL = 'http://localhost:3000'
 
 const SchedulePage = () => {
@@ -77,7 +76,7 @@ const SchedulePage = () => {
             <div className="time-slot">{time}</div>
             {Object.keys(coursesByDay).map((day) => {
               const courses = coursesByDay[day].filter((course) => {
-                return course.startTime === time || course.endTime === time
+                return course.startTime <= time && course.endTime >= time
               })
 
               return (
