@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { SignInUser } from '../services/Auth'
+import { Link } from 'react-router-dom'
 
 const LoginPage = ({ setUser, fetchUserSession }) => {
   let navigate = useNavigate()
@@ -20,7 +21,7 @@ const LoginPage = ({ setUser, fetchUserSession }) => {
       setUser(payload)
       localStorage.setItem('user', JSON.stringify(payload))
       fetchUserSession()
-      navigate('/')
+      navigate('/Dashboard')
     } catch (error) {
       setErrorMessage('Invalid email or password. Please try again.')
     }
@@ -90,6 +91,7 @@ const LoginPage = ({ setUser, fetchUserSession }) => {
             />
           </div>
           {errorMessage && <p className="error-message">{errorMessage}</p>}
+          
           <button type="submit">Login</button>
           </div>
         </form>
