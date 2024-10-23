@@ -536,7 +536,6 @@ h1 {
   transition: width 0.3s ease;
 }
 
-/* View Details Button */
 .view-details-button {
   background-color: #2196f3;
   color: white;
@@ -546,6 +545,10 @@ h1 {
   text-align: center;
   display: inline-block;
   margin-top: 10px;
+  
+  position: relative; /* or absolute, depending on your layout */
+  left: 50%; /* Move to the center */
+  transform: translateX(-50%); /* Adjust to center by its own width */
 }
 
 .view-details-button:hover {
@@ -562,17 +565,7 @@ h1 {
   margin-top: 10px;
 }
 
-.status-pill.completed {
-  background-color: #4caf50;
-}
 
-.status-pill.in-progress {
-  background-color: #ff9800;
-}
-
-.status-pill.pending {
-  background-color: #f44336;
-}
 
 /* Priority Badge */
 .priority-badge {
