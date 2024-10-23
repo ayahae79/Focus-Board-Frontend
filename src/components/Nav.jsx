@@ -1,12 +1,17 @@
-
 import { Link } from "react-router-dom"
-import { FaHome, FaPowerOff, FaTasks, FaPlus, FaBook, FaCalendar } from "react-icons/fa"
+import {
+  FaHome,
+  FaPowerOff,
+  FaTasks,
+  FaPlus,
+  FaBook,
+  FaCalendar,
+} from "react-icons/fa"
 import { RiLoginBoxLine, RiUserAddLine } from "react-icons/ri"
 import { GoProjectRoadmap } from "react-icons/go"
 import { MdEventNote } from "react-icons/md"
 import { CgProfile } from "react-icons/cg"
 import { FaDeleteLeft } from "react-icons/fa6"
-
 
 const Nav = ({ user, handleLogOut }) => {
   const isAdmin = user && user.role === "admin"
@@ -36,7 +41,9 @@ const Nav = ({ user, handleLogOut }) => {
           <Link to="/courses/createcourse" className="nav-link">
             <FaPlus /> Add Course
           </Link>
-          <Link to="/drop-requests" className="nav-link">
+        </li>
+        <li>
+          <Link to="/DropRequest" className="nav-link">
             <FaDeleteLeft /> Drop Requests
           </Link>
         </li>
@@ -83,8 +90,8 @@ const Nav = ({ user, handleLogOut }) => {
         </li>
         <li>
           <Link to="/calendar" className="nav-link">
-            {' '}
-            <FaCalendar /> Calendar{' '}
+            {" "}
+            <FaCalendar /> Calendar{" "}
           </Link>
         </li>
       </ul>
