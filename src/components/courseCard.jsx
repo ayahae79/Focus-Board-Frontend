@@ -26,14 +26,13 @@ const CourseCard = ({ user, course, onEdit, onDelete }) => {
   }, [course.dropRequests, user._id])
 
   const handleDropRequest = async () => {
+    if (isDropRequested) return
     try {
-      const response = await axios.post(
-        `${BASE_URL}/course/${user.id}/${course._id}/drop`,
-        {
-          userId: user.id,
-        }
-      )
+      await axios.post(`${BASE_URL}/course/${user.id}/${course._id}/drop`, {
+        userId: user.id,
+      })
       setRequestStatus("pending")
+      setIsDropRequested(true)
     } catch (error) {
       setRequestStatus("Error sending request.")
     }
@@ -50,23 +49,26 @@ const CourseCard = ({ user, course, onEdit, onDelete }) => {
       <p className="course-lecture-date">Lecture Date: {course.lecturedate}</p>
       <p className="course-start-time">Start Time: {course.startTime}</p>
       <p className="course-end-time">End Time: {course.endTime}</p>
-      <p className="course-end-time">
-        Statuse : {requestStatus ? requestStatus : "Enrolled"}
-      </p>
+      {!isAdmin && (
+        <p className="course-end-time">
+          Statuse : {requestStatus ? requestStatus : "Enrolled"}
+        </p>
+      )}
 
       <div className="course-actions">
-        <button
-          onClick={handleDropRequest}
-          disabled={isDropRequested}
-          style={{
-            backgroundColor: isDropRequested ? "gray" : "", // Change color as needed
-            color: "white",
-            cursor: isDropRequested ? "not-allowed" : "pointer",
-            opacity: isDropRequested ? 0.5 : 1,
-          }}
-        >
-          {isDropRequested ? `Request ${requestStatus}` : "Drop Course"}
-        </button>
+        {!isAdmin && (
+          <button
+            onClick={handleDropRequest}
+            disabled={isDropRequested}
+            style={{
+              backgroundColor: isDropRequested ? "gray" : "",
+              color: "white",
+              cursor: isDropRequested ? "not-allowed" : "pointer",
+            }}
+          >
+            {isDropRequested ? `Request ${requestStatus}` : "Drop Course"}
+          </button>
+        )}
 
         {isAdmin && (
           <button onClick={handleShowDropRequests}>Show Drop Requests</button>
