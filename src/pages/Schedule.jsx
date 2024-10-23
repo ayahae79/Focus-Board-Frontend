@@ -1,7 +1,7 @@
-import axios from 'axios'
-import React, { useState, useEffect } from 'react'
+import axios from 'axios';
+import React, { useState, useEffect } from 'react';
 
-const BASE_URL = 'http://localhost:3000'
+const BASE_URL = 'http://localhost:3000';
 
 const SchedulePage = () => {
   const [coursesByDay, setCoursesByDay] = useState({
@@ -11,14 +11,14 @@ const SchedulePage = () => {
     Wednesday: [],
     Thursday: [],
     Friday: [],
-    Saturday: []
-  })
+    Saturday: [],
+  });
 
   useEffect(() => {
     const fetchCourses = async () => {
       try {
-        const response = await axios.get(`${BASE_URL}/course/courses`)
-        const courses = response.data
+        const response = await axios.get(`${BASE_URL}/course/courses`);
+        const courses = response.data;
 
         const groupedCourses = {
           Sunday: [],
@@ -27,25 +27,25 @@ const SchedulePage = () => {
           Wednesday: [],
           Thursday: [],
           Friday: [],
-          Saturday: []
-        }
+          Saturday: [],
+        };
 
         courses.forEach((course) => {
           course.lectureDays.forEach((day) => {
             if (groupedCourses[day]) {
-              groupedCourses[day].push(course)
+              groupedCourses[day].push(course);
             }
-          })
-        })
+          });
+        });
 
-        setCoursesByDay(groupedCourses)
+        setCoursesByDay(groupedCourses);
       } catch (error) {
-        console.error('Error fetching courses:', error)
+        console.error('Error fetching courses:', error);
       }
-    }
+    };
 
-    fetchCourses()
-  }, [])
+    fetchCourses();
+  }, []);
 
   const timeSlots = [
     '9 AM',
@@ -56,8 +56,24 @@ const SchedulePage = () => {
     '2 PM',
     '3 PM',
     '4 PM',
-    '5 PM'
-  ]
+    '5 PM',
+  ];
+
+  const isTimeInRange = (time, startTime, endTime) => {
+    const parseTime = (timeStr) => {
+      const [hour, modifier] = timeStr.split(' ');
+      let hour24 = parseInt(hour, 10);
+      if (modifier === 'PM' && hour24 < 12) hour24 += 12;
+      if (modifier === 'AM' && hour24 === 12) hour24 = 0;
+      return hour24;
+    };
+
+    const time24 = parseTime(time);
+    const start24 = parseTime(startTime);
+    const end24 = parseTime(endTime);
+
+    return time24 >= start24 && time24 < end24;
+  };
 
   return (
     <div>
@@ -76,8 +92,8 @@ const SchedulePage = () => {
             <div className="time-slot">{time}</div>
             {Object.keys(coursesByDay).map((day) => {
               const courses = coursesByDay[day].filter((course) => {
-                return course.startTime <= time && course.endTime >= time
-              })
+                return isTimeInRange(time, course.startTime, course.endTime);
+              });
 
               return (
                 <div key={`${time}-${day}`} className="cell">
@@ -94,13 +110,13 @@ const SchedulePage = () => {
                     <span>No class</span>
                   )}
                 </div>
-              )
+              );
             })}
           </div>
         ))}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default SchedulePage
+export default SchedulePage;
