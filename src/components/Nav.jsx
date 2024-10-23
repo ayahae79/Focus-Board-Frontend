@@ -1,6 +1,6 @@
 
 import { Link } from "react-router-dom"
-import { FaHome, FaPowerOff, FaTasks, FaPlus, FaBook, FaCalendar } from "react-icons/fa"
+import { FaHome, FaPowerOff, FaTasks, FaPlus, FaBook, FaCalendar, FaDesktop } from "react-icons/fa"
 import { RiLoginBoxLine, RiUserAddLine } from "react-icons/ri"
 import { GoProjectRoadmap } from "react-icons/go"
 import { MdEventNote } from "react-icons/md"
@@ -90,6 +90,11 @@ const Nav = ({ user, handleLogOut }) => {
         <li>
           <Link to="/schedule" className="nav-link">
             <FaCalendar /> Schedule
+          </Link>
+        </li>
+        <li>
+          <Link to="/dashboard" className="nav-link">
+            <FaDesktop /> Dashboard
           </Link>
         </li>
       </ul>
