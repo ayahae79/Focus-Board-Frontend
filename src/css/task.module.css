@@ -46,6 +46,8 @@
   padding: 8px 12px;
   border-radius: 5px;
   text-decoration: none;
+  width:10px;
+  height:5px;
   transition: background-color 0.3s;
 }
 

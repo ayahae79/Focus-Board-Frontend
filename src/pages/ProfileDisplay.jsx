@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react"
 import axios from "axios"
 import { useNavigate } from "react-router-dom"
-import user from "../images/user.jpg"
+import userImg from "../images/user.jpg"
 
 const BASE_URL = "http://localhost:3000"
 
@@ -44,7 +44,7 @@ const ProfileDisplay = ({ user }) => {
       </div>
 
       <div className="profile-header">
-        <img src={ user } alt="User  Profile" className="profile-picture" />
+        <img src={userImg} alt="User  Profile" className="profile-picture" />
         <div className="profile-info">
           <h3>{userData.full_name}</h3>
           <p>{userData.email}</p>
