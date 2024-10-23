@@ -52,6 +52,7 @@ const CourseCard = ({ user, course, onEdit, onDelete }) => {
         <p className="course-end-time">
           Statuse : {requestStatus ? requestStatus : "Enrolled"}
         </p>
+      )}
       {course.lectureDays && course.lectureDays.length > 0 && (
         <div className="lecture-schedule">
           <h3>Lecture Days:</h3>
