@@ -1,8 +1,8 @@
-import axios from 'axios'
-import React, { useState, useEffect } from 'react'
-import { useNavigate, useLocation } from 'react-router-dom'
+import axios from "axios"
+import React, { useState, useEffect } from "react"
+import { useNavigate, useLocation } from "react-router-dom"
 
-const BASE_URL = 'http://localhost:3000'
+const BASE_URL = "http://localhost:3000"
 
 const EditCourseForm = () => {
   const navigate = useNavigate()
@@ -28,7 +28,7 @@ const EditCourseForm = () => {
         const response = await axios.get(`${BASE_URL}/user/users`)
         setAvailableStudents(response.data)
       } catch (error) {
-        console.error('Error fetching students:', error)
+        console.error("Error fetching students:", error)
       }
     }
 
@@ -44,12 +44,12 @@ const EditCourseForm = () => {
         lectureDays: selectedDays,
         startTime,
         endTime,
-        studentsEnrolled // Use the current students enrolled
+        studentsEnrolled, // Use the current students enrolled
       }
       await axios.put(`${BASE_URL}/course/courses/${course._id}`, formData)
-      navigate('/courses')
+      navigate("/courses")
     } catch (error) {
-      console.error('Error updating course:', error)
+      console.error("Error updating course:", error)
     }
   }
 
@@ -104,13 +104,13 @@ const EditCourseForm = () => {
         <div>
           <label>Select Lecture Days:</label>
           {[
-            'Monday',
-            'Tuesday',
-            'Wednesday',
-            'Thursday',
-            'Friday',
-            'Saturday',
-            'Sunday'
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday",
+            "Sunday",
           ].map((day) => (
             <div key={day}>
               <input
@@ -124,7 +124,6 @@ const EditCourseForm = () => {
           ))}
         </div>
 
-        {/* Updated students enrollment section */}
         <div>
           <label>Students Enrolled:</label>
           <select
