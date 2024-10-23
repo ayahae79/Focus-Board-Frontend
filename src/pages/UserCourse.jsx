@@ -16,6 +16,7 @@ const CourseList = ({ user }) => {
     try {
       const response = await axios.get(`${BASE_URL}/user/myCourses/${user.id}`)
       setCourses(response.data.courses)
+      console.log(response.data.courses)
     } catch (error) {
       console.error("Failed to fetch courses:", error)
     }
