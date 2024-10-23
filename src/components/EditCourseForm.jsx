@@ -9,11 +9,31 @@ const EditCourseForm = () => {
   const location = useLocation()
   const { course } = location.state
 
+  // Initialize state with course data
   const [title, setTitle] = useState(course.title)
   const [description, setDescription] = useState(course.description)
   const [startTime, setStartTime] = useState(course.startTime)
   const [endTime, setEndTime] = useState(course.endTime)
   const [selectedDays, setSelectedDays] = useState(course.lectureDays || [])
+  const [studentsEnrolled, setStudentsEnrolled] = useState(
+    course.studentsEnrolled || []
+  ) // Initialize with current enrolled students
+
+  const [availableStudents, setAvailableStudents] = useState([]) // State to store all available students
+
+  // Fetch all available students on component mount
+  useEffect(() => {
+    const fetchStudents = async () => {
+      try {
+        const response = await axios.get(`${BASE_URL}/user/users`)
+        setAvailableStudents(response.data)
+      } catch (error) {
+        console.error('Error fetching students:', error)
+      }
+    }
+
+    fetchStudents()
+  }, [])
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -23,7 +43,8 @@ const EditCourseForm = () => {
         description,
         lectureDays: selectedDays,
         startTime,
-        endTime
+        endTime,
+        studentsEnrolled // Use the current students enrolled
       }
       await axios.put(`${BASE_URL}/course/courses/${course._id}`, formData)
       navigate('/courses')
@@ -102,6 +123,27 @@ const EditCourseForm = () => {
             </div>
           ))}
         </div>
+
+        {/* Updated students enrollment section */}
+        <div>
+          <label>Students Enrolled:</label>
+          <select
+            multiple
+            value={studentsEnrolled}
+            onChange={(e) =>
+              setStudentsEnrolled(
+                [...e.target.selectedOptions].map((option) => option.value)
+              )
+            }
+          >
+            {availableStudents.map((student) => (
+              <option key={student._id} value={student._id}>
+                {student.full_name}
+              </option>
+            ))}
+          </select>
+        </div>
+
         <button type="submit">Update Course</button>
       </form>
     </div>
