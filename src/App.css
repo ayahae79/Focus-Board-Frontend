@@ -5,7 +5,7 @@
 .welcome {
   text-align: center; /* Center the welcome message */
   font-weight: bold; /* Make the text bold */
-  color: #39cb58; /* Optional: Set a specific color for the text */
+  color: #000000; /* Optional: Set a specific color for the text */
   margin-bottom: 20px; /* Space below the heading */
 }
 
@@ -16,8 +16,8 @@
 }
 
 .dashboard-box {
-  flex: 1; /* Allow boxes to grow and fill available space */
-  width: 100vw; /* Set a minimum width for the boxes */
+  flex: 2; /* Allow boxes to grow and fill available space */
+  width: 50vw; /* Set a minimum width for the boxes */
   margin: 10px; /* Space around each box */
   padding: 15px; /* Padding inside the boxes */
   border: 1px solid #ddd; /* Light border around the boxes */
@@ -76,6 +76,7 @@
 .profile-details div {
   margin-bottom: 10px; /* Space between each detail */
 }
+
 
 /* From Uiverse.io by dhanushrs1 */
 .button {
