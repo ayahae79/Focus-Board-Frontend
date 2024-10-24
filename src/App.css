@@ -919,3 +919,41 @@ h1 {
   padding: 20px;
   margin: 15px;
 }
+
+.course-card-dash {
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin: 15px;
+  width: 300px;
+}
+.courses-dashboard {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.todoContainer {
+  padding: 20px;
+  margin: 15px;
+  background-color: #ffffff;
+  width: 300px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.todoTitle {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #007bff;
+}
+
+.todoTasks {
+  margin-top: 10px;
+}
+
+.todoTaskTitle {
+  font-size: 18px;
+  margin: 0;
+}
