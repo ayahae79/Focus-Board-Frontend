@@ -9,9 +9,9 @@ const SchedulePage = () => {
     Monday: [],
     Tuesday: [],
     Wednesday: [],
-    Thursday: [],
-    Friday: [],
-    Saturday: [],
+    Thursday: []
+    // Friday: [],
+    // Saturday: [],
   });
 
   useEffect(() => {

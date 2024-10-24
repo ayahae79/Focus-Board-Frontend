@@ -4,6 +4,8 @@ import ToDo from "../components/ToDo"
 import EventList from "./EventList"
 import RoadmapList from "./roadmapList"
 import TaskList from "./TaskList"
+import SchedulePage from "./Schedule"
+
 import axios from "axios"
 const BASE_URL = "http://localhost:3000"
 const Dashboard = ({ user, course, events, roadmaps, tasks }) => {
@@ -43,7 +45,7 @@ const Dashboard = ({ user, course, events, roadmaps, tasks }) => {
       <h2 className="welcome">Welcome, {userData.full_name}!</h2>
       <div className="dashboard-container">
         <div className="dashboard-box">
-          <CourseDashboard user={user} />
+        <SchedulePage user={user.data} />
         </div>
         <div className="dashboard-box">
           <ToDo user={user} />
