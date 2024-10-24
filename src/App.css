@@ -1,15 +1,7 @@
 /* profile style */
 .containerprofile {
-  /* max-width: 700px; */
-  width: 700px;
-  height: 700px;
-  margin: 40px auto;
-  padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  background-color: rgba(255, 255, 255, 0.7);
-  display: block;
+  padding: 30px;
+  overflow-y: hidden;
 }
 .info-box {
   width: 100px;
@@ -43,7 +35,7 @@
 }
 
 .profile-info {
-  flex-grow: 1; /* Allow this section to take remaining space */
+  flex-grow: 1;
 }
 
 .profile-info h3 {
@@ -142,12 +134,6 @@
   width: 100vw;
 }
 
-.update .button {
-  /* margin: 0 auto; */
-  margin-bottom: 800px;
-  margin-right: 800px;
-}
-
 /* logo */
 .nav-logo {
   width: 160px; /* Set the width of the logo */
@@ -160,14 +146,7 @@
 /* StudentProfile.css */
 
 .form-containerr {
-  width: 700px;
-
-  margin: 0 auto;
-  padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  background-color: #f9f9f9;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  padding: 60px;
 }
 
 .form-title {
@@ -368,7 +347,7 @@ footer {
 /* for all social containers*/
 .socialContainer {
   width: 52px;
-  height: 52px;
+  height: 25px;
   background-color: #0a1d5a;
   display: flex;
   align-items: center;
@@ -857,7 +836,7 @@ h1 {
 }
 
 .view-details-button {
-  background-color: #2196f3;
+  background-color: #0a1d5a;
   color: white;
   padding: 10px 15px;
   border-radius: 5px;
@@ -872,7 +851,7 @@ h1 {
 }
 
 .view-details-button:hover {
-  background-color: #1976d2;
+  background-color: #2196f3;
 }
 
 /* Status Pill */
@@ -904,4 +883,24 @@ h1 {
 }
 .register-form {
   text-align: center;
+}
+.delete-button {
+  width: 100px;
+  background-color: #fa0404;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 15px;
+  cursor: pointer;
+  margin: 10px;
+}
+.edit-button {
+  width: 100px;
+  background-color: #90caf9;
+  color: #003f7f;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 15px;
+  cursor: pointer;
+  margin: 10px;
 }

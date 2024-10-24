@@ -61,7 +61,7 @@ const TaskDetail = () => {
       <button onClick={handleEdit} className="edit-button">
         Edit Task
       </button>
-      <button onClick={handleDelete} className="delete-button">
+      <button onClick={handleDelete} className="roadmap-actions">
         Delete Task
       </button>
     </div>

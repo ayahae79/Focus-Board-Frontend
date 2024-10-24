@@ -77,11 +77,9 @@ const ProfileDisplay = ({ user }) => {
           <strong>Academic Advisor:</strong>{" "}
           <span>{userData.academic_advisor}</span>
         </div>
-        <div className="update">
-          <button onClick={() => navigate("/profile")} className="button">
-            Update Profile
-          </button>
-        </div>{" "}
+        <button onClick={() => navigate("/profile")} className="button">
+          Update Profile
+        </button>
       </div>
     </div>
   )

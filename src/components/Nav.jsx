@@ -51,16 +51,15 @@ const Nav = ({ user, handleLogOut }) => {
       <img src={logo} alt="Logo" className="nav-logo" />
       <ul className="nav-list">
         <li>
-          <Link to="/dashboard" className="nav-link">
-            <FaDesktop /> Dashboard
-          </Link>
-        </li>
-        <li>
           <Link to="/profile/data" className="nav-link">
             <CgProfile /> profile
           </Link>
         </li>
-
+        <li>
+          <Link to="/" className="nav-link">
+            <FaDesktop /> Dashboard
+          </Link>
+        </li>
         <li>
           <Link to="/tasks" className="nav-link">
             <FaTasks /> Task List
