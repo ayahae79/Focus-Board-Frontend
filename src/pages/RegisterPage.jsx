@@ -24,7 +24,7 @@ const RegisterPage = () => {
     try {
       await RegisterUser(formValues)
       setFormValues(initialState)
-      navigate("/login")
+      navigate("/")
     } catch (error) {
       setError("Registration failed! Please try again.")
     }

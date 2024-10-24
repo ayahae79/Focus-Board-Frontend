@@ -23,7 +23,7 @@ const Nav = ({ user, handleLogOut }) => {
       <img src={logo} alt="Logo" className="nav-logo" />
       <ul className="nav-list">
         <li>
-          <Link onClick={handleLogOut} to="/" className="nav-link">
+          <Link onClick={handleLogOut} to="/login" className="nav-link">
             {" "}
             <FaPowerOff /> Sign Out{" "}
           </Link>
@@ -36,11 +36,6 @@ const Nav = ({ user, handleLogOut }) => {
         <li>
           <Link to="/courses/createcourse" className="nav-link">
             <FaPlus /> Add Course
-          </Link>
-        </li>
-        <li>
-          <Link to="/DropRequest" className="nav-link">
-            <FaDeleteLeft /> Drop Requests
           </Link>
         </li>
       </ul>
@@ -92,7 +87,7 @@ const Nav = ({ user, handleLogOut }) => {
           </Link>
         </li>
         <li>
-          <Link onClick={handleLogOut} to="/" className="nav-link">
+          <Link onClick={handleLogOut} to="/login" className="nav-link">
             <FaPowerOff /> Sign Out
           </Link>
         </li>

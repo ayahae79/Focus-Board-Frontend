@@ -22,8 +22,8 @@ const CreateRoadmapForm = ({ user }) => {
       const coursesResponse = await axios.get(
         `${BASE_URL}/user/myCourses/${user.id}`
       )
-      setTasks(tasksResponse.data)
-      setCourses(coursesResponse.data)
+      setTasks(tasksResponse.data.tasks)
+      setCourses(coursesResponse.data.courses)
     } catch (error) {
       console.error("Error fetching tasks or courses:", error)
     }

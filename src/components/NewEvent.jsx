@@ -1,11 +1,12 @@
 import axios from "axios"
 import React, { useState, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
-
+import styles from "../css/task.module.css"
 const BASE_URL = "http://localhost:3000"
 
 const NewEvent = ({ user }) => {
   const navigate = useNavigate()
+  console.log(user)
 
   // State for event details
   const [name, setName] = useState("")
@@ -17,17 +18,21 @@ const NewEvent = ({ user }) => {
   const [tasks, setTasks] = useState([])
 
   useEffect(() => {
-    // Fetch tasks when the component is mounted
     const fetchTasks = async () => {
-      try {
-        const response = await axios.get(`${BASE_URL}/tasks/tasks`)
-        setTasks(response.data)
-      } catch (error) {
-        console.error("Error fetching tasks:", error)
+      if (user && user.id) {
+        // Check if user and user.id are defined
+        try {
+          const response = await axios.get(
+            `${BASE_URL}/user/myTasks/${user.id}`
+          )
+          setTasks(response.data.tasks)
+        } catch (error) {
+          console.error("Error fetching tasks:", error)
+        }
       }
     }
     fetchTasks()
-  }, [])
+  }, [user])
 
   // Handle changes in input fields
   const handleChange = (e) => {
@@ -75,55 +80,69 @@ const NewEvent = ({ user }) => {
   }
 
   return (
-    <div className="container">
-      <h2>Create New Event</h2>
-      <form onSubmit={handleSubmit}>
+    <div className={styles.newTaskContainer}>
+      <h2 className={styles.newTaskTitle}>Create New Event</h2>
+      <form onSubmit={handleSubmit} className={styles.newTaskForm}>
         <div>
-          <label htmlFor="name">Event Name</label>
+          <label htmlFor="name" className={styles.formLabel}>
+            Event Name
+          </label>
           <input
             type="text"
             id="name"
             name="name"
             value={name}
             onChange={handleChange}
+            className={styles.formInput}
             required
           />
         </div>
 
         <div>
-          <label htmlFor="start">Start Date</label>
+          <label htmlFor="start" className={styles.formLabel}>
+            Start Date
+          </label>
           <input
             type="datetime-local"
             id="start"
             name="start"
             value={start}
             onChange={handleChange}
+            className={styles.formInput}
             required
           />
         </div>
 
         <div>
-          <label htmlFor="end">End Date</label>
+          <label htmlFor="end" className={styles.formLabel}>
+            End Date
+          </label>
           <input
             type="datetime-local"
             id="end"
             name="end"
             value={end}
             onChange={handleChange}
+            className={styles.formInput}
             required
           />
         </div>
 
         <div>
-          <label htmlFor="task">Associated Task</label>
+          <label htmlFor="task" className={styles.formLabel}>
+            Associated Task
+          </label>
           <select
             id="task"
             name="task"
             value={taskId}
             onChange={handleChange}
+            className={styles.formInput}
             required
           >
-            <option value="">Select a Task</option>
+            <option value="" className={styles.formGroup}>
+              Select a Task
+            </option>
             {tasks.map((task) => (
               <option key={task._id} value={task._id}>
                 {task.name}
@@ -132,7 +151,9 @@ const NewEvent = ({ user }) => {
           </select>
         </div>
 
-        <button type="submit">Create Event</button>
+        <button type="submit" className={styles.submitButton}>
+          Create Event
+        </button>
       </form>
     </div>
   )

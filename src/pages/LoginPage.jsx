@@ -25,7 +25,7 @@ const LoginPage = ({ setUser, fetchUserSession }) => {
       setUser(payload)
       localStorage.setItem("user", JSON.stringify(payload))
       fetchUserSession()
-      navigate("/Dashboard")
+      navigate("/")
     } catch (error) {
       setErrorMessage("Invalid email or password. Please try again.")
     }
