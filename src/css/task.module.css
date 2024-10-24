@@ -1,17 +1,24 @@
 .tasklistTitle {
-  color: #003f7f; /* Title color */
-  margin-bottom: 20px; /* Space below the title */
+  color: #003f7f;
+  margin-bottom: 20px;
 }
 
+.header {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 100px 10px 10px;
+}
 .newTaskButton {
-  padding: 10px 30px;
-  max-width: max-content;
+  width: 50px;
+  height: 50px;
   background-color: #90caf9;
   color: #003f7f;
   text-decoration: none;
-  border-radius: 5px;
-  margin-bottom: 20px;
-  transition: background-color 0.3s;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 15px;
 }
 
 .newTaskButton:hover {
@@ -46,8 +53,8 @@
   padding: 8px 12px;
   border-radius: 5px;
   text-decoration: none;
-  width:10px;
-  height:5px;
+  width: 10px;
+  height: 5px;
   transition: background-color 0.3s;
 }
 

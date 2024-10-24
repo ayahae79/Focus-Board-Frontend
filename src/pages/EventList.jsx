@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react"
 import axios from "axios"
 import { Link } from "react-router-dom"
 import EventCard from "../components/EventCard"
-
+import { FaPlus } from "react-icons/fa"
 const BASE_URL = "http://localhost:3000"
 
 const EventList = ({ user }) => {
@@ -24,10 +24,12 @@ const EventList = ({ user }) => {
 
   return (
     <div>
-      <h1 className="eventlist-title">Event List</h1>
-      <Link to="/events/add" className="newButton">
-        Create New Event
-      </Link>
+      <div className="listheader">
+        <h1 className="eventlist-title">Event List</h1>
+        <Link to="/events/add" className="newButton">
+          <FaPlus />
+        </Link>
+      </div>
       <div className="events">
         {events.length > 0 ? (
           events.map((event) => (

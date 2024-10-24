@@ -24,10 +24,12 @@ const TaskList = ({ user }) => {
 
   return (
     <div className={styles.tasklistContainer}>
-      <h1 className={styles.tasklistTitle}>Task List</h1>
-      <Link to="/tasks/new" className={styles.newTaskButton}>
-        Create New Task
-      </Link>
+      <div className={styles.header}>
+        <h1 className={styles.tasklistTitle}>Task List</h1>
+        <Link to="/tasks/new" className={styles.newTaskButton}>
+          <FaPlus />
+        </Link>
+      </div>
       <div className={styles.tasks}>
         {tasks.length > 0 ? (
           tasks.map((task) => (

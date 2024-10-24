@@ -1,6 +1,7 @@
 import axios from "axios"
 import React, { useState, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
+import styles from "../css/task.module.css"
 
 const BASE_URL = "http://localhost:3000"
 
@@ -15,10 +16,14 @@ const CreateRoadmapForm = ({ user }) => {
   const [users, setUsers] = useState([])
   const fetchTasksAndCourses = async () => {
     try {
-      const tasksResponse = await axios.get(`${BASE_URL}/tasks/tasks`)
-      const coursesResponse = await axios.get(`${BASE_URL}/Course/courses`)
-      setTasks(tasksResponse.data)
-      setCourses(coursesResponse.data)
+      const tasksResponse = await axios.get(
+        `${BASE_URL}/user/myTasks/${user.id}`
+      )
+      const coursesResponse = await axios.get(
+        `${BASE_URL}/user/myCourses/${user.id}`
+      )
+      setTasks(tasksResponse.data.tasks)
+      setCourses(coursesResponse.data.courses)
     } catch (error) {
       console.error("Error fetching tasks or courses:", error)
     }
@@ -44,7 +49,6 @@ const CreateRoadmapForm = ({ user }) => {
       await axios.post(`${BASE_URL}/roadmap/add`, formData)
       console.log("Roadmap saved")
 
-      
       setName("")
       setDescription("")
       setSelectedTasks([])
@@ -58,29 +62,29 @@ const CreateRoadmapForm = ({ user }) => {
 
   return (
     <>
-      <h1 className="newroadmap-title">New Roadmap</h1>
-      <form onSubmit={handleSubmit} className="newroadmap-form">
-        <div className="newroadmap-field">
-          <label className="newroadmap-label">Name:</label>
+      <h1 className={styles.newTaskTitle}>New Roadmap</h1>
+      <form onSubmit={handleSubmit} className={styles.newTaskForm}>
+        <div className={styles.formGroup}>
+          <label className={styles.formLabel}>Name:</label>
           <input
             type="text"
             value={name}
             onChange={(roadmap) => setName(roadmap.target.value)}
-            className="newroadmap-input"
+            className={styles.formInput}
             required
           />
         </div>
-        <div className="newroadmap-field">
-          <label className="newroadmap-label">Description:</label>
+        <div className={styles.formGroup}>
+          <label className={styles.formLabel}>Description:</label>
           <textarea
             value={description}
             onChange={(roadmap) => setDescription(roadmap.target.value)}
-            className="newroadmap-input"
+            className={styles.formInput}
             required
           />
         </div>
-        <div className="newroadmap-field">
-          <label className="newroadmap-label">Select Tasks:</label>
+        <div className={styles.formGroup}>
+          <label className={styles.formLabel}>Select Tasks:</label>
           <select
             multiple
             value={selectedTasks}
@@ -94,17 +98,17 @@ const CreateRoadmapForm = ({ user }) => {
               }
               setSelectedTasks(value)
             }}
-            className="newroadmap-input"
+            className={styles.formSelect}
           >
             {tasks.map((task) => (
               <option key={task._id} value={task._id}>
-                {task.name} 
+                {task.name}
               </option>
             ))}
           </select>
         </div>
-        <div className="newroadmap-field">
-          <label className="newroadmap-label">Select Courses:</label>
+        <div className={styles.formGroup}>
+          <label className={styles.formLabel}>Select Courses:</label>
           <select
             multiple
             value={selectedCourses}
@@ -118,17 +122,19 @@ const CreateRoadmapForm = ({ user }) => {
               }
               setSelectedCourses(value)
             }}
-            className="newroadmap-input"
+            className={styles.formInput}
           >
             {courses.map((course) => (
               <option key={course._id} value={course._id}>
-                {course.title} 
+                {course.title}
               </option>
             ))}
           </select>
         </div>
 
-        <button type="submit">Create Roadmap</button>
+        <button type="submit" className={styles.submitButton}>
+          Create Roadmap
+        </button>
       </form>
     </>
   )

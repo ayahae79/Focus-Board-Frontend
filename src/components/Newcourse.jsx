@@ -1,7 +1,7 @@
 import axios from "axios"
 import React, { useState, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
-
+import styles from "../css/task.module.css"
 const BASE_URL = "http://localhost:3000"
 
 const CreateCourseForm = () => {
@@ -55,45 +55,49 @@ const CreateCourseForm = () => {
 
   return (
     <div>
-      <h1>Create Course</h1>
-      <form onSubmit={handleSubmit}>
+      <h1 className={styles.newTaskTitle}>Create Course</h1>
+      <form onSubmit={handleSubmit} className={styles.newTaskForm}>
         <div>
-          <label>Title:</label>
+          <label className={styles.formLabel}>Title:</label>
           <input
             type="text"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
             required
+            className={styles.formInput}
           />
         </div>
         <div>
-          <label>Description:</label>
+          <label className={styles.formLabel}>Description:</label>
           <textarea
             value={description}
             onChange={(e) => setDescription(e.target.value)}
             required
+            className={styles.formInput}
           />
         </div>
         <div>
-          <label>Start Time:</label>
+          <label className={styles.formLabel}>Start Time:</label>
           <input
             type="time"
             value={startTime}
             onChange={(e) => setStartTime(e.target.value)}
             required
+            className={styles.formInput}
           />
         </div>
         <div>
-          <label>End Time:</label>
+          <label className={styles.formLabel}>End Time:</label>
           <input
             type="time"
             value={endTime}
             onChange={(e) => setEndTime(e.target.value)}
             required
+            className={styles.formInput}
           />
         </div>
         <div>
-          <label>Select Lecture Days:</label>
+          <label className={styles.formLabel}>Select Lecture Days:</label>
           {[
             "Monday",
             "Tuesday",
@@ -109,16 +113,18 @@ const CreateCourseForm = () => {
                 value={day}
                 checked={selectedDays.includes(day)}
                 onChange={handleDaySelection}
+                className={styles.formInput}
               />
               <label>{day}</label>
             </div>
           ))}
         </div>
         <div>
-          <label>Students Enrolled:</label>
+          <label className={styles.formLabel}>Students Enrolled:</label>
           <select
             multiple
             value={studentsEnrolled}
+            className={styles.formSelect}
             onChange={(e) =>
               setStudentsEnrolled(
                 [...e.target.selectedOptions].map((option) => option.value)
@@ -132,7 +138,9 @@ const CreateCourseForm = () => {
             ))}
           </select>
         </div>
-        <button type="submit">Create Course</button>
+        <button type="submit" className={styles.submitButton}>
+          Create Course
+        </button>
       </form>
     </div>
   )
