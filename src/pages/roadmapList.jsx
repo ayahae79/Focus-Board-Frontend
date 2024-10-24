@@ -16,12 +16,16 @@ const RoadmapList = ({ user }) => {
 
   const getRoadmaps = async () => {
     try {
-      const response = await axios.get(`${BASE_URL}/user/myRoadmaps/${user.id}`)
-      setRoadmaps(response.data.roadmaps)
+      const response = await axios.get(`${BASE_URL}/roadmap/roadmaps`)
+      setRoadmaps(response.data)
     } catch (error) {
       console.error("Failed to fetch roadmaps:", error)
     }
   }
+
+  // const handleEdit = (roadmap) => {
+  //   navigate('/roadmaps/createroadmap', { state: { roadmap } });
+  // };
 
   const handleDelete = async (roadmapId) => {
     const confirmDelete = window.confirm(
@@ -46,17 +50,13 @@ const RoadmapList = ({ user }) => {
           <FaPlus />
         </Link>
       </div>
-      {roadmaps.length > 0 ? (
-        <div className="roadmaps">
-          {roadmaps.map((roadmap) => (
-            <div key={roadmap._id}>
-              <RoadMapCard roadmap={roadmap} onDelete={handleDelete} />
-            </div>
-          ))}
-        </div>
-      ) : (
-        <p>No roadmap available. Please create a roadmap.</p>
-      )}
+      <div className="roadmaps">
+        {roadmaps.map((roadmap) => (
+          <div key={roadmap._id}>
+            <RoadMapCard roadmap={roadmap} onDelete={handleDelete} />
+          </div>
+        ))}
+      </div>
     </div>
   )
 }
