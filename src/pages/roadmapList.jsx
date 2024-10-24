@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react"
 import axios from "axios"
-
+import { FaPlus } from "react-icons/fa"
 import RoadMapCard from "../components/roadMapCard"
 import { useNavigate, Link } from "react-router-dom"
 
@@ -23,10 +23,6 @@ const RoadmapList = ({ user }) => {
     }
   }
 
-  // const handleEdit = (roadmap) => {
-  //   navigate('/roadmaps/createroadmap', { state: { roadmap } });
-  // };
-
   const handleDelete = async (roadmapId) => {
     const confirmDelete = window.confirm(
       "Are you sure you want to delete this roadmap?"
@@ -44,10 +40,12 @@ const RoadmapList = ({ user }) => {
 
   return (
     <div>
-      <h1 className="roadmaplist-title">Student Roadmaps</h1>
-      <Link to="/roadmap/new" className="newButton">
-        Create New Roadmap
-      </Link>
+      <div className="listheader">
+        <h1 className="roadmaplist-title">Student Roadmaps</h1>
+        <Link to="/roadmap/new" className="newButton">
+          <FaPlus />
+        </Link>
+      </div>
       <div className="roadmaps">
         {roadmaps.map((roadmap) => (
           <div key={roadmap._id}>
