@@ -1,14 +1,14 @@
-import React from 'react'
+import React from "react"
 
 const RoadMapCard = ({ roadmap, onEdit, onDelete }) => {
   // Function to get course titles from the roadmap
   const getCourseTitles = (courses) => {
-    return courses.map((course) => course.title).join(', ') // Join titles with a comma
+    return courses?.map((course) => course.title).join(", ") // Join titles with a comma
   }
 
   // Function to get task names from the roadmap
   const getTaskNames = (tasks) => {
-    return tasks.map((task) => task.name).join(', ') // Join task names with a comma
+    return tasks.map((task) => task.name).join(", ") // Join task names with a comma
   }
 
   return (

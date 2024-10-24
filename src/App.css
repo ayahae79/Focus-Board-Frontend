@@ -1,3 +1,30 @@
+.dashboard {
+  padding: 20px; /* Add padding around the dashboard */
+}
+
+.welcome {
+  text-align: center; /* Center the welcome message */
+  font-weight: bold; /* Make the text bold */
+  color: #39cb58; /* Optional: Set a specific color for the text */
+  margin-bottom: 20px; /* Space below the heading */
+}
+
+.dashboard-container {
+  display: flex; /* Use flexbox for layout */
+  justify-content: space-between; /* Space between the boxes */
+  flex-wrap: wrap; /* Allow wrapping to the next line if necessary */
+}
+
+.dashboard-box {
+  flex: 1; /* Allow boxes to grow and fill available space */
+  width: 100vw; /* Set a minimum width for the boxes */
+  margin: 10px; /* Space around each box */
+  padding: 15px; /* Padding inside the boxes */
+  border: 1px solid #ddd; /* Light border around the boxes */
+  border-radius: 8px; /* Rounded corners */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  background-color: #fff; /* White background for the boxes */
+}
 /* profile style */
 .containerprofile {
   padding: 30px;
@@ -49,6 +76,7 @@
 .profile-details div {
   margin-bottom: 10px; /* Space between each detail */
 }
+
 /* From Uiverse.io by dhanushrs1 */
 .button {
   --color: #000d37;
