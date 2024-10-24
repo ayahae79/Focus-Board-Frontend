@@ -40,15 +40,19 @@ const Dashboard = ({ user, course, events, roadmaps, tasks }) => {
   }
   return (
     <div className="dashboard">
-      <h2>Welcome , {userData.full_name}!</h2>
-
-      <div className="dashboard-box">
-        <CourseDashboard user={user} />
-      </div>
-      <div className="dashboard-box">
-        <ToDo user={user} />
+      <h2 className="welcome">Welcome, {userData.full_name}!</h2>
+      <div className="dashboard-container">
+        <div className="dashboard-box">
+          <CourseDashboard user={user} />
+        </div>
+        <div className="dashboard-box">
+          <ToDo user={user} />
+          <EventList user={user} />
+          <RoadmapList user={user} />
+        </div>
+       
       </div>
     </div>
-  )
-}
+  );
+};
 export default Dashboard
